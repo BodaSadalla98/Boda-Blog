@@ -4,9 +4,9 @@
         "post0": {
             "title": "Scribbles Notebook",
             "content": "Why WaveGan . in the past we used a nueral vocoder, but it represented a bottleneck in quality and speed . Before WaveGan . Autoregressive generation: . It&#39;s an approach in which speech samples are generated one by one in sequence. | Examples: WaveNet | Has high quality | Takes around 180 secs to generate a one second of speech | can&#39;t be applied to services | . Non-autoregressive generation: . It&#39;s an approach where all voice samples are generated in prallel | Examples: Prallel WaveNet | Lower quality than autoregressive method | takes 0.03 seconds to generates one second of speed | | . Resources . https://www.youtube.com/watch?v=knzT7M6qsl0 | .",
-            "url": "https://bodasadalla98.github.io/Boda-Blog/jupyter/deeplearning/python/2021/11/06/Wavegan.html",
-            "relUrl": "/jupyter/deeplearning/python/2021/11/06/Wavegan.html",
-            "date": " • Nov 6, 2021"
+            "url": "https://bodasadalla98.github.io/Boda-Blog/jupyter/deeplearning/python/2021/11/07/Wavegan.html",
+            "relUrl": "/jupyter/deeplearning/python/2021/11/07/Wavegan.html",
+            "date": " • Nov 7, 2021"
         }
         
     

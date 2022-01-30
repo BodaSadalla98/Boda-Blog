@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Univnet | Boda Blog</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Univnet" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Research for wavegan" />
+<meta property="og:description" content="Research for wavegan" />
+<link rel="canonical" href="https://bodasadalla98.github.io/Boda-Blog/jupyter/deeplearning/python/tts/2022/01/29/Univnet.html" />
+<meta property="og:url" content="https://bodasadalla98.github.io/Boda-Blog/jupyter/deeplearning/python/tts/2022/01/29/Univnet.html" />
+<meta property="og:site_name" content="Boda Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-01-29T00:00:00-06:00" />
+<script type="application/ld+json">
+{"datePublished":"2022-01-29T00:00:00-06:00","url":"https://bodasadalla98.github.io/Boda-Blog/jupyter/deeplearning/python/tts/2022/01/29/Univnet.html","@type":"BlogPosting","headline":"Univnet","dateModified":"2022-01-29T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://bodasadalla98.github.io/Boda-Blog/jupyter/deeplearning/python/tts/2022/01/29/Univnet.html"},"description":"Research for wavegan","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/Boda-Blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://bodasadalla98.github.io/Boda-Blog/feed.xml" title="Boda Blog" /><link rel="shortcut icon" type="image/x-icon" href="/Boda-Blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/Boda-Blog/">Boda Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/Boda-Blog/about/">About Me</a><a class="page-link" href="/Boda-Blog/search/">Search</a><a class="page-link" href="/Boda-Blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Univnet</h1><p class="page-description">Research for wavegan</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-01-29T00:00:00-06:00" itemprop="datePublished">
+        Jan 29, 2022
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/Boda-Blog/categories/#jupyter">jupyter</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/Boda-Blog/categories/#deeplearning">deeplearning</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/Boda-Blog/categories/#python">python</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/Boda-Blog/categories/#TTS">TTS</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/BodaSadalla98/Boda-Blog/tree/master/_notebooks/2021-11-7-Univnet.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/Boda-Blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/BodaSadalla98/Boda-Blog/master?filepath=_notebooks%2F2021-11-7-Univnet.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/Boda-Blog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/BodaSadalla98/Boda-Blog/blob/master/_notebooks/2021-11-7-Univnet.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/Boda-Blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#TTS-(Text-To-Speech)">TTS (Text To Speech) </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Wavenet">Wavenet </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#Wavenet-V1">Wavenet V1 </a></li>
+<li class="toc-entry toc-h4"><a href="#Wavenet-V2">Wavenet V2 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#WaveGan">WaveGan </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#Before-WaveGan">Before WaveGan </a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#Autoregressive-generation:">Autoregressive generation: </a></li>
+<li class="toc-entry toc-h5"><a href="#Non-autoregressive-generation:">Non-autoregressive generation: </a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#End-to-End-TTS">End-to-End TTS </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#Tacotron2">Tacotron2 </a></li>
+<li class="toc-entry toc-h4"><a href="#Prallel-WaveGan">Prallel WaveGan </a></li>
+<li class="toc-entry toc-h4"><a href="#Univnet">Univnet </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#Resources">Resources </a></li>
+</ul>
+</li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-11-7-Univnet.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="TTS-(Text-To-Speech)">
+<a class="anchor" href="#TTS-(Text-To-Speech)" aria-hidden="true"><span class="octicon octicon-link"></span></a>TTS (Text To Speech)<a class="anchor-link" href="#TTS-(Text-To-Speech)"> </a>
+</h1>
+<p>TTS can be viewed as a sequence-to-sequence mapping problem; from a sequence of discrete symbols
+(text) to a real-valued time series (speech signals). A typical TTS pipeline has two parts; 1)
+text analysis and 2) speech synthesis. The text analysis part typically includes a number of natural
+language processing (NLP) steps, such as sentence segmentation, word segmentation, text normalization,
+part-of-speech (POS) tagging, and grapheme-to-phoneme (G2P) conversion. It takes a word
+sequence as input and outputs a phoneme sequence with a variety of linguistic contexts. The speech
+synthesis part takes the context-dependent phoneme sequence as its input and outputs a synthesized
+speech waveform.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Wavenet">
+<a class="anchor" href="#Wavenet" aria-hidden="true"><span class="octicon octicon-link"></span></a>Wavenet<a class="anchor-link" href="#Wavenet"> </a>
+</h3>
+<h4 id="Wavenet-V1">
+<a class="anchor" href="#Wavenet-V1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Wavenet V1<a class="anchor-link" href="#Wavenet-V1"> </a>
+</h4>
+<p>before wavenet, ther was two methods:</p>
+<ul>
+<li>generative method:<ul>
+<li>which would produce the over all song of the sentece well, but would fail to produce the individual sounds well</li>
+</ul>
+</li>
+<li>
+<p>concatinative:</p>
+<ul>
+<li>we use a huge corpus of phonatics and concatinate them together to procude a whole sentence, this way we would procuce the individual sounds correctly, but we would lose the song of the sentence </li>
+</ul>
+<p>wavenet:</p>
+<ul>
+<li>tries to do both of the above methods, it also can change the speaker by changing some parameters</li>
+</ul>
+</li>
+<li>
+<p>data output:   16 khz rate</p>
+</li>
+<li>
+<p>we  cant use normal RNN as the max seq length around 50</p>
+</li>
+<li>
+<p>they used dilated CNNs:</p>
+<ul>
+<li>can have very long look back</li>
+<li>fast to train</li>
+</ul>
+</li>
+</ul>
+<p>WaveNet: is a deep generative model of audio data that operates directly at
+the waveform level. WaveNets are autoregressive and combine causal filters with dilated convolutions
+to allow their receptive fields to grow exponentially with depth, which is important to model
+the long-range temporal dependencies in audio signals.WaveNets can be conditioned
+on other inputs in a global (e.g. speaker identity) or local way (e.g. linguistic features).
+When applied to TTS, WaveNets produced samples that outperform the current best TTS systems
+in subjective naturalness. Finally, WaveNets showed very promising results when applied to music
+audio modeling and speech recognition.</p>
+<h4 id="Wavenet-V2">
+<a class="anchor" href="#Wavenet-V2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Wavenet V2<a class="anchor-link" href="#Wavenet-V2"> </a>
+</h4>
+<p>The original Wavenet implementation suffered from low speed inference, because it predicts samples squentially.
+They needed to predict time samples in prallel so that wavenet can be used in production, so the used a fully trained wavenet teacher, to train a smaller wavnet student, which doesn't depend on previous samples to produce the current sample, while still maintaining the same quality.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="WaveGan">
+<a class="anchor" href="#WaveGan" aria-hidden="true"><span class="octicon octicon-link"></span></a>WaveGan<a class="anchor-link" href="#WaveGan"> </a>
+</h3>
+<p>WaveGAN is a generative adversarial network for unsupervised synthesis of raw-waveform audio (as opposed to image-like spectrograms).</p>
+<p>The WaveGAN architecture is based off DCGAN. The DCGAN generator uses the transposed convolution operation to iteratively upsample low-resolution feature maps into a high-resolution image. WaveGAN modifies this transposed convolution operation to widen its receptive field, using a longer one-dimensional filters of length 25 instead of two-dimensional filters of size 5x5, and upsampling by a factor of 4 instead of 2 at each layer. The discriminator is modified in a similar way, using length-25 filters in one dimension and increasing stride from 2 to 4. These changes result in WaveGAN having the same number of parameters, numerical operations, and output dimensionality as DCGAN</p>
+<h4 id="Before-WaveGan">
+<a class="anchor" href="#Before-WaveGan" aria-hidden="true"><span class="octicon octicon-link"></span></a>Before WaveGan<a class="anchor-link" href="#Before-WaveGan"> </a>
+</h4>
+<h5 id="Autoregressive-generation:">
+<a class="anchor" href="#Autoregressive-generation:" aria-hidden="true"><span class="octicon octicon-link"></span></a>Autoregressive generation:<a class="anchor-link" href="#Autoregressive-generation:"> </a>
+</h5>
+<ul>
+<li>It's an approach in which speech samples are generated one by one in sequence.</li>
+<li>Examples: WaveNet </li>
+<li>Has high quality </li>
+<li>Takes around 180 secs to generate a one second of speech </li>
+<li>can't be applied to services in production  due to low speed </li>
+</ul>
+<h5 id="Non-autoregressive-generation:">
+<a class="anchor" href="#Non-autoregressive-generation:" aria-hidden="true"><span class="octicon octicon-link"></span></a>Non-autoregressive generation:<a class="anchor-link" href="#Non-autoregressive-generation:"> </a>
+</h5>
+<ul>
+<li>It's an approach where all voice samples are generated in prallel </li>
+<li>Examples: Prallel WaveNet </li>
+<li>Lower quality than autoregressive method</li>
+<li>takes 0.03 seconds to generates one second of speed  </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="End-to-End-TTS">
+<a class="anchor" href="#End-to-End-TTS" aria-hidden="true"><span class="octicon octicon-link"></span></a>End-to-End TTS<a class="anchor-link" href="#End-to-End-TTS"> </a>
+</h3>
+<p>End-to-end TTS systems can be splitted into two main components:</p>
+<ul>
+<li>Speech Synthesizer, which takes in raw text and output mel-spectrogram.<ul>
+<li>Ex: Tacotron </li>
+</ul>
+</li>
+<li>Vocoder, which takes in mel-spectrogram and outputs sound waves.<ul>
+<li>Ex: Prallel WaveGan, Univnet</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Tacotron2">
+<a class="anchor" href="#Tacotron2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tacotron2<a class="anchor-link" href="#Tacotron2"> </a>
+</h4>
+<p>Tacotron 2 is a neural network architecture for speech synthesis directly from text. It consists of two components: a recurrent sequence-to-sequence feature prediction network with attention which predicts a sequence of mel spectrogram frames from an input character sequence, followed by a modified WaveNet model acting as a vocoder to synthesize time-domain
+waveforms from those spectrograms.</p>
+<p><img src="/Boda-Blog/images/copied_from_nb/assets/tacotron_arch.png" alt="Tacotron_arch" title="Tacotron2 Architecture"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Prallel-WaveGan">
+<a class="anchor" href="#Prallel-WaveGan" aria-hidden="true"><span class="octicon octicon-link"></span></a>Prallel WaveGan<a class="anchor-link" href="#Prallel-WaveGan"> </a>
+</h4>
+<p>Parallel WaveGAN1, a distillation-free, fast, and small-footprint waveform generation method using a generative adversarial network. In the proposed method, a non-autoregressive WaveNet is trained by jointly optimizing multi-resolution spectrogram and adversarial loss functions, which can effectively capture the time-frequency distribution of the realistic speech waveform. As our method does not require density distillation used in the conventional teacher-student framework, the entire model can be easily trained even with a small number of parameters. In particular, the proposed Parallel WaveGAN has only 1.44 M parameters and can generate 24 kHz speech waveform 28.68 times faster than real-time on a single GPU environment. Perceptual listening test results verify that our proposed method achieves 4.16 mean opinion score within a Transformer-based text-to-speech framework, which is comparative to the best distillation-based Parallel WaveNet system.</p>
+<p><img src="/Boda-Blog/images/copied_from_nb/assets/parallel_wavegan_arch.png" alt="Parallel_WaveGan_arch" title="Parallel WaveGan Architecture"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Univnet">
+<a class="anchor" href="#Univnet" aria-hidden="true"><span class="octicon octicon-link"></span></a>Univnet<a class="anchor-link" href="#Univnet"> </a>
+</h4>
+<p>UnivNet, a neural vocoder that
+synthesizes high-fidelity waveforms in real time. Inspired by
+works in the field of voice activity detection, we added a multiresolution spectrogram discriminator that employs multiple linear spectrogram magnitudes computed using various parameter
+sets. Using full-band mel-spectrograms as input, we expect to
+generate high-resolution signals by adding a discriminator that
+employs spectrograms of multiple resolutions as the input</p>
+<p><img src="/Boda-Blog/images/copied_from_nb/assets/univnet_arch.png" alt="Univnet_arch" title="Univnet Architecture"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Resources">
+<a class="anchor" href="#Resources" aria-hidden="true"><span class="octicon octicon-link"></span></a>Resources<a class="anchor-link" href="#Resources"> </a>
+</h3>
+<ul>
+<li>Wavenet<ul>
+<li><a href="https://deepmind.com/blog/article/high-fidelity-speech-synthesis-wavenet">https://deepmind.com/blog/article/high-fidelity-speech-synthesis-wavenet</a></li>
+<li><a href="https://www.youtube.com/watch?v=YyUXG-BfDbE">https://www.youtube.com/watch?v=YyUXG-BfDbE</a></li>
+<li><a href="https://www.kdnuggets.com/2020/07/deep-learning-signal-processing.html">https://www.kdnuggets.com/2020/07/deep-learning-signal-processing.html</a></li>
+<li><a href="https://deepmind.com/blog/article/wavenet-generative-model-raw-audio">https://deepmind.com/blog/article/wavenet-generative-model-raw-audio</a></li>
+</ul>
+</li>
+<li>WaveGan<ul>
+<li><a href="https://arxiv.org/pdf/1802.04208v3.pdf">https://arxiv.org/pdf/1802.04208v3.pdf</a></li>
+<li><a href="https://paperswithcode.com/method/wavegan">https://paperswithcode.com/method/wavegan</a></li>
+</ul>
+</li>
+<li>
+<p>Prallel WaveGan</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=knzT7M6qsl0">https://www.youtube.com/watch?v=knzT7M6qsl0</a></li>
+<li><a href="https://github.com/kan-bayashi/ParallelWaveGAN">https://github.com/kan-bayashi/ParallelWaveGAN</a></li>
+<li><a href="https://arxiv.org/pdf/1910.11480.pdf">https://arxiv.org/pdf/1910.11480.pdf</a></li>
+</ul>
+</li>
+<li>
+<p>Tacotron</p>
+<ul>
+<li><a href="https://arxiv.org/pdf/1712.05884v2.pdf">https://arxiv.org/pdf/1712.05884v2.pdf</a></li>
+</ul>
+</li>
+<li>Univnet<ul>
+<li><a href="https://arxiv.org/pdf/2106.07889.pdf">https://arxiv.org/pdf/2106.07889.pdf</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="BodaSadalla98/Boda-Blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/Boda-Blog/jupyter/deeplearning/python/tts/2022/01/29/Univnet.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/Boda-Blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/Boda-Blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/Boda-Blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>This is an unorganized posts in whih I try to summraize my readings as a way to help remember the knowlegde</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/BodaSadalla98" target="_blank" title="BodaSadalla98"><svg class="svg-icon grey"><use xlink:href="/Boda-Blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/bodasadala" target="_blank" title="bodasadala"><svg class="svg-icon grey"><use xlink:href="/Boda-Blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

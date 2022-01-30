@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      1 min read
+      2 min read
     
 </span></p>
 
@@ -149,6 +149,19 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h3"><a href="#Positional-info">Positional info </a></li>
 <li class="toc-entry toc-h3"><a href="#Residual-connections">Residual connections </a></li>
 <li class="toc-entry toc-h3"><a href="#Layer-Normalization">Layer Normalization </a></li>
+<li class="toc-entry toc-h3"><a href="#Debugging-ML-Models">Debugging ML Models </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#Refrence">Refrence </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#SVM-and-Kernels">SVM and Kernels </a></li>
+<li class="toc-entry toc-h3"><a href="#Distributed-Training--in-Pytorch">Distributed Training  in Pytorch </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#Pytorch-DDP-Internal">Pytorch DDP Internal </a></li>
+<li class="toc-entry toc-h4"><a href="#DataParallel-VS-DistributedDataParallel">DataParallel VS DistributedDataParallel </a></li>
+<li class="toc-entry toc-h4"><a href="#Resources">Resources </a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul><!--
@@ -244,6 +257,80 @@ window.onload = wrap_img;
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Debugging-ML-Models">
+<a class="anchor" href="#Debugging-ML-Models" aria-hidden="true"><span class="octicon octicon-link"></span></a>Debugging ML Models<a class="anchor-link" href="#Debugging-ML-Models"> </a>
+</h3>
+<ul>
+<li>
+<p>Understand bias-variance diagnoses</p>
+<ul>
+<li>getting more data ==&gt; fixes high variance </li>
+<li>smaller set of features ==&gt; fixes high variance </li>
+</ul>
+</li>
+</ul>
+<h4 id="Refrence">
+<a class="anchor" href="#Refrence" aria-hidden="true"><span class="octicon octicon-link"></span></a>Refrence<a class="anchor-link" href="#Refrence"> </a>
+</h4>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=ORrStCArmP4">Prof. Andrew NG Vid</a></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="SVM-and-Kernels">
+<a class="anchor" href="#SVM-and-Kernels" aria-hidden="true"><span class="octicon octicon-link"></span></a>SVM and Kernels<a class="anchor-link" href="#SVM-and-Kernels"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Distributed-Training--in-Pytorch">
+<a class="anchor" href="#Distributed-Training--in-Pytorch" aria-hidden="true"><span class="octicon octicon-link"></span></a>Distributed Training  in Pytorch<a class="anchor-link" href="#Distributed-Training--in-Pytorch"> </a>
+</h3>
+<h4 id="Pytorch-DDP-Internal">
+<a class="anchor" href="#Pytorch-DDP-Internal" aria-hidden="true"><span class="octicon octicon-link"></span></a>Pytorch DDP Internal<a class="anchor-link" href="#Pytorch-DDP-Internal"> </a>
+</h4>
+<p>DDP relies on c10d ProcessGroup for communications. Hence, applications must create ProcessGroup instances before constructing DDP.
+The DDP constructor takes a reference to the local module, and broadcasts state_dict() from the process with rank 0 to all other processes in the group to make sure that all model replicas start from the exact same state.
+DDP registers autograd hooks during construction, one hook per parameter. These hooks will be triggered during the backward pass when the gradient becomes ready.</p>
+<p>Backward pass: Because <code>backward()</code> function is called on the loss directly, which out of DDP's control. So, it waits till one of the autograd hooks are invoked, to trigger the gradients synchronization.</p>
+<p>DDP waits for all gradients in one bucket are ready, Reducer kicks off an asynchronous allreduce on that bucket to calculate mean of gradients across all processes.</p>
+<p>Optimizer Step: From the optimizer’s perspective, it is optimizing a local model. Model replicas on all DDP processes can keep in sync because they all start from the same state and they have the same averaged gradients in every iteration.</p>
+<h4 id="DataParallel-VS-DistributedDataParallel">
+<a class="anchor" href="#DataParallel-VS-DistributedDataParallel" aria-hidden="true"><span class="octicon octicon-link"></span></a>DataParallel VS DistributedDataParallel<a class="anchor-link" href="#DataParallel-VS-DistributedDataParallel"> </a>
+</h4>
+<ul>
+<li>
+<code>DataParallel</code> is single-process, multi-thread, and only works on a single machine, while <code>DistributedDataParallel</code> is multi-process and works for both single- and multi- machine training. DataParallel is usually slower than DistributedDataParallel even on a single machine due to GIL contention across threads, per-iteration replicated model, and additional overhead introduced by scattering inputs and gathering outputs.</li>
+<li>
+<code>DataParallel</code> doesn't support model parallel </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Resources">
+<a class="anchor" href="#Resources" aria-hidden="true"><span class="octicon octicon-link"></span></a>Resources<a class="anchor-link" href="#Resources"> </a>
+</h4>
+<pre><code>- https://pytorch.org/docs/master/notes/ddp.html
+- https://pytorch.org/tutorials/intermediate/ddp_tutorial.html?highlight=distributed%20training</code></pre>
+
+</div>
+</div>
+</div>
 </div>
 
 
@@ -279,7 +366,7 @@ window.onload = wrap_img;
       </div>
     </div>
 
-    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/BodaSadalla98" title="BodaSadalla98"><svg class="svg-icon grey"><use xlink:href="/Boda-Blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/bodasadala" title="bodasadala"><svg class="svg-icon grey"><use xlink:href="/Boda-Blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/BodaSadalla98" target="_blank" title="BodaSadalla98"><svg class="svg-icon grey"><use xlink:href="/Boda-Blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/bodasadala" target="_blank" title="bodasadala"><svg class="svg-icon grey"><use xlink:href="/Boda-Blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
 </div>
 
   </div>

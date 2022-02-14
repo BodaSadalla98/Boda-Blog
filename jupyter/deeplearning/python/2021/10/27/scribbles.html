@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      2 min read
+      3 min read
     
 </span></p>
 
@@ -149,16 +149,19 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h3"><a href="#Positional-info">Positional info </a></li>
 <li class="toc-entry toc-h3"><a href="#Residual-connections">Residual connections </a></li>
 <li class="toc-entry toc-h3"><a href="#Layer-Normalization">Layer Normalization </a></li>
-<li class="toc-entry toc-h3"><a href="#Debugging-ML-Models">Debugging ML Models </a>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Debugging-ML-Models">Debugging ML Models </a>
 <ul>
 <li class="toc-entry toc-h4"><a href="#Refrence">Refrence </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h3"><a href="#SVM-and-Kernels">SVM and Kernels </a></li>
-<li class="toc-entry toc-h3"><a href="#Distributed-Training--in-Pytorch">Distributed Training  in Pytorch </a>
+<li class="toc-entry toc-h2"><a href="#SVM-and-Kernels">SVM and Kernels </a></li>
+<li class="toc-entry toc-h2"><a href="#Distributed-Training--in-Pytorch">Distributed Training  in Pytorch </a>
 <ul>
-<li class="toc-entry toc-h4"><a href="#Pytorch-DDP-Internal">Pytorch DDP Internal </a></li>
-<li class="toc-entry toc-h4"><a href="#DataParallel-VS-DistributedDataParallel">DataParallel VS DistributedDataParallel </a></li>
+<li class="toc-entry toc-h3"><a href="#Pytorch-DDP-Internal">Pytorch DDP Internal </a></li>
+<li class="toc-entry toc-h3"><a href="#DataParallel-VS-DistributedDataParallel">DataParallel VS DistributedDataParallel </a>
+<ul>
 <li class="toc-entry toc-h4"><a href="#Resources">Resources </a></li>
 </ul>
 </li>
@@ -260,9 +263,9 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Debugging-ML-Models">
+<h2 id="Debugging-ML-Models">
 <a class="anchor" href="#Debugging-ML-Models" aria-hidden="true"><span class="octicon octicon-link"></span></a>Debugging ML Models<a class="anchor-link" href="#Debugging-ML-Models"> </a>
-</h3>
+</h2>
 <ul>
 <li>
 <p>Understand bias-variance diagnoses</p>
@@ -285,30 +288,45 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="SVM-and-Kernels">
+<h2 id="SVM-and-Kernels">
 <a class="anchor" href="#SVM-and-Kernels" aria-hidden="true"><span class="octicon octicon-link"></span></a>SVM and Kernels<a class="anchor-link" href="#SVM-and-Kernels"> </a>
-</h3>
+</h2>
+<ul>
+<li>The main idea of kernels, is that if you can formlate the optimization problem as some of inner products of feater vectors, that can have infinite dimentions, and to come up with a way to calc these inner products efficiently </li>
+</ul>
+<p>we have $ X(i) \in R^{100}$, suppose  W can be expressed as a linear combintaion of X</p>
+<p>$ W = \sum_{i = 1}^{M} \alpha_{i} y^i x^i$   (This can be proved with the representer theorem)</p>
+<ul>
+<li>vector W is perpendicular to the decsion boundry specified by algorithm, so W kinds of sets the orientation of the decision boundry and the bias moves it alont right and left.</li>
+</ul>
+<p>optimization problem is :
+$\min  {w,b}  {1/2} *||W||^2 $<br>
+s.t  $y^i*((W^T * x^i) + b) &gt;= 1$</p>
+<ul>
+<li>For SVM you can make a trade off between the margin and how much you can tolerate wrong calssified examples using a constant </li>
+</ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Distributed-Training--in-Pytorch">
+<h2 id="Distributed-Training--in-Pytorch">
 <a class="anchor" href="#Distributed-Training--in-Pytorch" aria-hidden="true"><span class="octicon octicon-link"></span></a>Distributed Training  in Pytorch<a class="anchor-link" href="#Distributed-Training--in-Pytorch"> </a>
-</h3>
-<h4 id="Pytorch-DDP-Internal">
+</h2>
+<h3 id="Pytorch-DDP-Internal">
 <a class="anchor" href="#Pytorch-DDP-Internal" aria-hidden="true"><span class="octicon octicon-link"></span></a>Pytorch DDP Internal<a class="anchor-link" href="#Pytorch-DDP-Internal"> </a>
-</h4>
+</h3>
 <p>DDP relies on c10d ProcessGroup for communications. Hence, applications must create ProcessGroup instances before constructing DDP.
 The DDP constructor takes a reference to the local module, and broadcasts state_dict() from the process with rank 0 to all other processes in the group to make sure that all model replicas start from the exact same state.
 DDP registers autograd hooks during construction, one hook per parameter. These hooks will be triggered during the backward pass when the gradient becomes ready.</p>
 <p>Backward pass: Because <code>backward()</code> function is called on the loss directly, which out of DDP's control. So, it waits till one of the autograd hooks are invoked, to trigger the gradients synchronization.</p>
 <p>DDP waits for all gradients in one bucket are ready, Reducer kicks off an asynchronous allreduce on that bucket to calculate mean of gradients across all processes.</p>
 <p>Optimizer Step: From the optimizer’s perspective, it is optimizing a local model. Model replicas on all DDP processes can keep in sync because they all start from the same state and they have the same averaged gradients in every iteration.</p>
-<h4 id="DataParallel-VS-DistributedDataParallel">
+<h3 id="DataParallel-VS-DistributedDataParallel">
 <a class="anchor" href="#DataParallel-VS-DistributedDataParallel" aria-hidden="true"><span class="octicon octicon-link"></span></a>DataParallel VS DistributedDataParallel<a class="anchor-link" href="#DataParallel-VS-DistributedDataParallel"> </a>
-</h4>
+</h3>
 <ul>
 <li>
 <code>DataParallel</code> is single-process, multi-thread, and only works on a single machine, while <code>DistributedDataParallel</code> is multi-process and works for both single- and multi- machine training. DataParallel is usually slower than DistributedDataParallel even on a single machine due to GIL contention across threads, per-iteration replicated model, and additional overhead introduced by scattering inputs and gathering outputs.</li>

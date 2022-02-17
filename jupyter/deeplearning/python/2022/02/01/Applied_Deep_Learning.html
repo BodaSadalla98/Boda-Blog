@@ -143,6 +143,11 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h2"><a href="#Dropout">Dropout </a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#Network-In-Network">Network In Network </a></li>
+<li class="toc-entry toc-h3"><a href="#VGG-Net">VGG Net </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#Local-Response-Normalization:">Local Response Normalization: </a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul><!--
@@ -258,6 +263,32 @@ window.onload = wrap_img;
 </li>
 <li>this idea is bisacally a (one to one convution) </li>
 <li>they introduced a global averaging pooling: insted of adding a bunch of FC layers at the end of teh conv architecture, we can just average multible channels  from the last conv layer to form the output layer </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>one by one convolution is a normal convolution with fliter size of 1 by 1 </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="VGG-Net">
+<a class="anchor" href="#VGG-Net" aria-hidden="true"><span class="octicon octicon-link"></span></a>VGG Net<a class="anchor-link" href="#VGG-Net"> </a>
+</h3>
+<h4 id="Local-Response-Normalization:">
+<a class="anchor" href="#Local-Response-Normalization:" aria-hidden="true"><span class="octicon octicon-link"></span></a>Local Response Normalization:<a class="anchor-link" href="#Local-Response-Normalization:"> </a>
+</h4>
+<ul>
+<li>the idea is to normalize a pixel acros nearing channels </li>
 </ul>
 
 </div>

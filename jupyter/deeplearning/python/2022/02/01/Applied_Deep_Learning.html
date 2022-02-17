@@ -146,6 +146,7 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h3"><a href="#VGG-Net">VGG Net </a>
 <ul>
 <li class="toc-entry toc-h4"><a href="#Local-Response-Normalization:">Local Response Normalization: </a></li>
+<li class="toc-entry toc-h4"><a href="#Data-Augmentation">Data Augmentation </a></li>
 </ul>
 </li>
 </ul>
@@ -288,7 +289,20 @@ window.onload = wrap_img;
 <a class="anchor" href="#Local-Response-Normalization:" aria-hidden="true"><span class="octicon octicon-link"></span></a>Local Response Normalization:<a class="anchor-link" href="#Local-Response-Normalization:"> </a>
 </h4>
 <ul>
-<li>the idea is to normalize a pixel acros nearing channels </li>
+<li>
+<p>the idea is to normalize a pixel across nearing channels</p>
+</li>
+<li>
+<p>after comparing nets with lrn and nets without, they didn't find big difference, so they stoped using it</p>
+</li>
+</ul>
+<h4 id="Data-Augmentation">
+<a class="anchor" href="#Data-Augmentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data Augmentation<a class="anchor-link" href="#Data-Augmentation"> </a>
+</h4>
+<ul>
+<li>Image translations( random crops), and horizontal reflection </li>
+<li>altering the intensities of the RGB channels </li>
+<li>scale jittering   </li>
 </ul>
 
 </div>

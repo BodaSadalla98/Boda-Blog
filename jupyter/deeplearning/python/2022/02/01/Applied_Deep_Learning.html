@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      2 min read
+      5 min read
     
 </span></p>
 
@@ -139,7 +139,6 @@ window.onload = wrap_img;
   <div class="post-content e-content" itemprop="articleBody">
     <ul class="section-nav">
 <li class="toc-entry toc-h2"><a href="#Deep-Learning-overview">Deep Learning overview </a></li>
-<li class="toc-entry toc-h2"><a href="#ImageNet:">ImageNet: </a></li>
 <li class="toc-entry toc-h2"><a href="#Dropout">Dropout </a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#Network-In-Network">Network In Network </a></li>
@@ -149,6 +148,16 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h4"><a href="#Data-Augmentation">Data Augmentation </a></li>
 </ul>
 </li>
+<li class="toc-entry toc-h3"><a href="#GoogleNet">GoogleNet </a></li>
+<li class="toc-entry toc-h3"><a href="#Batch-Normalization">Batch Normalization </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#conv-layers">conv layers </a></li>
+<li class="toc-entry toc-h4"><a href="#Benifits-of-batch-norm:">Benifits of batch norm: </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#Parametric-Relu:">Parametric Relu: </a></li>
+<li class="toc-entry toc-h3"><a href="#Kaiming-Initialization--(I-didn't-fully-understand-the-heavy-math-in-this-lecture,-as-Im-still-weak-in-statistics-and-variance-calculations):">Kaiming Initialization  (I didn&#39;t fully understand the heavy math in this lecture, as Im still weak in statistics and variance calculations): </a></li>
+<li class="toc-entry toc-h3"><a href="#Label-smoothing-regularization">Label smoothing regularization </a></li>
 </ul>
 </li>
 </ul><!--
@@ -228,15 +237,6 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="ImageNet:">
-<a class="anchor" href="#ImageNet:" aria-hidden="true"><span class="octicon octicon-link"></span></a>ImageNet:<a class="anchor-link" href="#ImageNet:"> </a>
-</h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Dropout">
 <a class="anchor" href="#Dropout" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dropout<a class="anchor-link" href="#Dropout"> </a>
 </h2>
@@ -282,6 +282,17 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>in conv net, we want the network to be invariant both localy and globaly, which means we still predict the photo is for a dog, even if the dog had  slight shift in pixels (local invariant), and also of the dog went to be in the lower corner of the pic isntead of the upper one (global invariant)</li>
+<li>we can achieve local invariant with pooling, and deal with global invariant with data augmentation</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="VGG-Net">
 <a class="anchor" href="#VGG-Net" aria-hidden="true"><span class="octicon octicon-link"></span></a>VGG Net<a class="anchor-link" href="#VGG-Net"> </a>
 </h3>
@@ -303,6 +314,124 @@ window.onload = wrap_img;
 <li>Image translations( random crops), and horizontal reflection </li>
 <li>altering the intensities of the RGB channels </li>
 <li>scale jittering   </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="GoogleNet">
+<a class="anchor" href="#GoogleNet" aria-hidden="true"><span class="octicon octicon-link"></span></a>GoogleNet<a class="anchor-link" href="#GoogleNet"> </a>
+</h3>
+<ul>
+<li>You stack multiple inception modules on top of each ohter </li>
+<li>the idea is that you don't have to choose which filter size to use, so why don't use them all </li>
+<li>to make the network more efficient, they first projected the input with one by one convolution then applied the main filters </li>
+<li>you concatinate the many filters through the channel dimension    </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Batch-Normalization">
+<a class="anchor" href="#Batch-Normalization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Batch Normalization<a class="anchor-link" href="#Batch-Normalization"> </a>
+</h3>
+<ul>
+<li>The main goal of batch normalization is to redude the <code>Internal Covariant Shift</code>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>we can just normalize the inputs and it would work fine</li>
+<li>the problem is that in each following layer, and statistics of its output would depend on its weights </li>
+<li>so we also need to nomalize the inputs in hidden layers </li>
+<li>
+<p>here, the gradient is also going through the mean and variance operations , so it gets a snese of whats gonna happen</p>
+</li>
+<li>
+<p>in inference we can't have batch-dependant mean and variance, so we use the average mean and variance for the whole dataset</p>
+</li>
+</ul>
+<h4 id="conv-layers">
+<a class="anchor" href="#conv-layers" aria-hidden="true"><span class="octicon octicon-link"></span></a>conv layers<a class="anchor-link" href="#conv-layers"> </a>
+</h4>
+<ul>
+<li>for conv layers we apply normalization across every channel for every pixel in the batch of images</li>
+<li>the effective bach size would be ==&gt; m<em>p</em>q where m is the number of images in the batch and 
+p,q are the image resolution </li>
+</ul>
+<h4 id="Benifits-of-batch-norm:">
+<a class="anchor" href="#Benifits-of-batch-norm:" aria-hidden="true"><span class="octicon octicon-link"></span></a>Benifits of batch norm:<a class="anchor-link" href="#Benifits-of-batch-norm:"> </a>
+</h4>
+<ul>
+<li>you can use higher learning rate, as the training is more stable </li>
+<li>less sensitive to initialization </li>
+<li>less sensitive to activation function </li>
+<li>it has regularization effects, because thre's random mini batch every time </li>
+<li>preserve gradient magintude ?? maybe --&gt; because the jacobian doesn't scale as we scales the weights </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Parametric-Relu:">
+<a class="anchor" href="#Parametric-Relu:" aria-hidden="true"><span class="octicon octicon-link"></span></a>Parametric Relu:<a class="anchor-link" href="#Parametric-Relu:"> </a>
+</h3>
+<p>$ f({y_i}) = \max(0,y_i) + a_i \min(0, y_i) $</p>
+<ul>
+<li>if $a_i = 0$  --&gt; Relu</li>
+<li>if $a_i = 0.01$ --&gt; Leaky Relu</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>the initialization of weights and biases depends on the type of activation function </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Kaiming-Initialization--(I-didn't-fully-understand-the-heavy-math-in-this-lecture,-as-Im-still-weak-in-statistics-and-variance-calculations):">
+<a class="anchor" href="#Kaiming-Initialization--(I-didn't-fully-understand-the-heavy-math-in-this-lecture,-as-Im-still-weak-in-statistics-and-variance-calculations):" aria-hidden="true"><span class="octicon octicon-link"></span></a>Kaiming Initialization  (I didn't fully understand the heavy math in this lecture, as Im still weak in statistics and variance calculations):<a class="anchor-link" href="#Kaiming-Initialization--(I-didn't-fully-understand-the-heavy-math-in-this-lecture,-as-Im-still-weak-in-statistics-and-variance-calculations):"> </a>
+</h3>
+<ul>
+<li>professor went into deep mathematical details into how to choose the intial values for weights</li>
+<li>the main idea is to investigate the variance of the response in each layer, so we start by calculating the variance for the output of the layer, and we end up with many terms of the weights multiplied together, so to prevent it it from vanishing or exploding, we  want the weights to have values centred around 1 </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Label-smoothing-regularization">
+<a class="anchor" href="#Label-smoothing-regularization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Label smoothing regularization<a class="anchor-link" href="#Label-smoothing-regularization"> </a>
+</h3>
+<ul>
+<li>the idea is to reagularize the notwork by giving random false labels for a few examples of the dataset </li>
 </ul>
 
 </div>

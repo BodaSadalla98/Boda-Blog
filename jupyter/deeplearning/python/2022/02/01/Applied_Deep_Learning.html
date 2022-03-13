@@ -170,6 +170,7 @@ window.onload = wrap_img;
 </ul>
 </li>
 <li class="toc-entry toc-h3"><a href="#Spatial-Transformer-Network">Spatial Transformer Network </a></li>
+<li class="toc-entry toc-h3"><a href="#Dynamic-Routing-between-capsuls">Dynamic Routing between capsuls </a></li>
 </ul>
 </li>
 </ul><!--
@@ -530,6 +531,19 @@ p,q are the image resolution </li>
 <p>the idea is to first find a good transformation parameters theta, you can do that using NN</p>
 </li>
 <li>then for every position in the output image, you do a bilinear sampling from the input image</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Dynamic-Routing-between-capsuls">
+<a class="anchor" href="#Dynamic-Routing-between-capsuls" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dynamic Routing between capsuls<a class="anchor-link" href="#Dynamic-Routing-between-capsuls"> </a>
+</h3>
+<ul>
+<li>the idea is to make the outputs of the capsule has a norm that is the probability that an object is presenet</li>
 </ul>
 
 </div>

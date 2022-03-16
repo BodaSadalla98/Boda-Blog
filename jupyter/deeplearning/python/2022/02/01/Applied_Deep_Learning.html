@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      6 min read
+      8 min read
     
 </span></p>
 
@@ -171,6 +171,12 @@ window.onload = wrap_img;
 </li>
 <li class="toc-entry toc-h3"><a href="#Spatial-Transformer-Network">Spatial Transformer Network </a></li>
 <li class="toc-entry toc-h3"><a href="#Dynamic-Routing-between-capsuls">Dynamic Routing between capsuls </a></li>
+<li class="toc-entry toc-h3"><a href="#Knowledge-Distillation">Knowledge Distillation </a></li>
+<li class="toc-entry toc-h3"><a href="#Network-Pruning:">Network Pruning: </a></li>
+<li class="toc-entry toc-h3"><a href="#Quantization">Quantization </a></li>
+<li class="toc-entry toc-h3"><a href="#Huffman-Coding">Huffman Coding </a></li>
+<li class="toc-entry toc-h3"><a href="#Squeeze-Net">Squeeze Net </a></li>
+<li class="toc-entry toc-h3"><a href="#XNOR-NET">XNOR-NET </a></li>
 </ul>
 </li>
 </ul><!--
@@ -544,6 +550,85 @@ p,q are the image resolution </li>
 </h3>
 <ul>
 <li>the idea is to make the outputs of the capsule has a norm that is the probability that an object is presenet</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Knowledge-Distillation">
+<a class="anchor" href="#Knowledge-Distillation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Knowledge Distillation<a class="anchor-link" href="#Knowledge-Distillation"> </a>
+</h3>
+<ul>
+<li>the main idea in to use an artificial data coming from the gaint model, using the normal training dataset and a smoothed the output from the giant model. then we train the distilled model using this dataset and with the same parameter <code>T</code> that we used to smooth the data. then in production we set the temperature parameter to 1 and use the distilled model for inference.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Network-Pruning:">
+<a class="anchor" href="#Network-Pruning:" aria-hidden="true"><span class="octicon octicon-link"></span></a>Network Pruning:<a class="anchor-link" href="#Network-Pruning:"> </a>
+</h3>
+<ul>
+<li>all connections with weights below a threshold are removed from the network </li>
+<li>weight are sparse now </li>
+<li>then we can represent them using fewer bits</li>
+</ul>
+<h3 id="Quantization">
+<a class="anchor" href="#Quantization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quantization<a class="anchor-link" href="#Quantization"> </a>
+</h3>
+<ul>
+<li>we basically cluster our weight to some centroids</li>
+<li>the number of centroids for conv layers are more than the ones for FC layers why:<ul>
+<li>because conv layer filters are already sparse, we need higher level of accuracy in them</li>
+<li>FC layers are so dense that we can tolerate fewer quantization levels </li>
+</ul>
+</li>
+</ul>
+<h3 id="Huffman-Coding">
+<a class="anchor" href="#Huffman-Coding" aria-hidden="true"><span class="octicon octicon-link"></span></a>Huffman Coding<a class="anchor-link" href="#Huffman-Coding"> </a>
+</h3>
+<ul>
+<li>store the more common symbols with more bits </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Squeeze-Net">
+<a class="anchor" href="#Squeeze-Net" aria-hidden="true"><span class="octicon octicon-link"></span></a>Squeeze Net<a class="anchor-link" href="#Squeeze-Net"> </a>
+</h3>
+<ul>
+<li>the idea is to squeeze the network by using one by one convolution thus use one smaller firlter sizes, then expand to make up for the squeeze that is made </li>
+<li>the main idea  is to use one by one comvultion to reduce the dimensionality</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="XNOR-NET">
+<a class="anchor" href="#XNOR-NET" aria-hidden="true"><span class="octicon octicon-link"></span></a>XNOR-NET<a class="anchor-link" href="#XNOR-NET"> </a>
+</h3>
+<ul>
+<li>the idea to to convert the weights and inputs to binary values, and so we save a lot in memory and computation</li>
+<li>the idea is to use a pre trained weights, then you try to binariez the weights by trying to approximate ==&gt; $W = \alpha * B $ where alpha  is postative 32 bit constant and B is a binary matrix </li>
+<li>
+<p>then mean we try to train by using a means square error loss function of the original weights and alpha and B</p>
+</li>
+<li>
+<p>I still can't fully understand  how to binarize the input</p>
+</li>
 </ul>
 
 </div>

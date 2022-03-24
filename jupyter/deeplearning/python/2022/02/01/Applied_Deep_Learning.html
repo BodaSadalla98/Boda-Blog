@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      8 min read
+      10 min read
     
 </span></p>
 
@@ -139,44 +139,75 @@ window.onload = wrap_img;
   <div class="post-content e-content" itemprop="articleBody">
     <ul class="section-nav">
 <li class="toc-entry toc-h2"><a href="#Deep-Learning-overview">Deep Learning overview </a></li>
-<li class="toc-entry toc-h2"><a href="#Dropout">Dropout </a>
+<li class="toc-entry toc-h2"><a href="#Dropout">Dropout </a></li>
+<li class="toc-entry toc-h1"><a href="#Computer-Vision">Computer Vision </a>
 <ul>
-<li class="toc-entry toc-h3"><a href="#Network-In-Network">Network In Network </a></li>
-<li class="toc-entry toc-h3"><a href="#VGG-Net">VGG Net </a>
+<li class="toc-entry toc-h2"><a href="#Image-Classification">Image Classification </a>
 <ul>
-<li class="toc-entry toc-h4"><a href="#Local-Response-Normalization:">Local Response Normalization: </a></li>
-<li class="toc-entry toc-h4"><a href="#Data-Augmentation">Data Augmentation </a></li>
+<li class="toc-entry toc-h3"><a href="#Large-Networks">Large Networks </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#Network-In-Network">Network In Network </a></li>
+<li class="toc-entry toc-h4"><a href="#VGG-Net">VGG Net </a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#Local-Response-Normalization:">Local Response Normalization: </a></li>
+<li class="toc-entry toc-h5"><a href="#Data-Augmentation">Data Augmentation </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h3"><a href="#GoogleNet">GoogleNet </a></li>
-<li class="toc-entry toc-h3"><a href="#Batch-Normalization">Batch Normalization </a>
+<li class="toc-entry toc-h4"><a href="#GoogleNet">GoogleNet </a></li>
+<li class="toc-entry toc-h4"><a href="#Batch-Normalization">Batch Normalization </a>
 <ul>
-<li class="toc-entry toc-h4"><a href="#conv-layers">conv layers </a></li>
-<li class="toc-entry toc-h4"><a href="#Benifits-of-batch-norm:">Benifits of batch norm: </a></li>
+<li class="toc-entry toc-h5"><a href="#conv-layers">conv layers </a></li>
+<li class="toc-entry toc-h5"><a href="#Benifits-of-batch-norm:">Benifits of batch norm: </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h3"><a href="#Parametric-Relu:">Parametric Relu: </a></li>
-<li class="toc-entry toc-h3"><a href="#Kaiming-Initialization--(I-didn't-fully-understand-the-heavy-math-in-this-lecture,-as-Im-still-weak-in-statistics-and-variance-calculations):">Kaiming Initialization  (I didn&#39;t fully understand the heavy math in this lecture, as Im still weak in statistics and variance calculations): </a></li>
-<li class="toc-entry toc-h3"><a href="#Label-smoothing-regularization">Label smoothing regularization </a></li>
-<li class="toc-entry toc-h3"><a href="#ResNet">ResNet </a></li>
-<li class="toc-entry toc-h3"><a href="#Identity-mapping-in-resnets">Identity mapping in resnets </a></li>
-<li class="toc-entry toc-h3"><a href="#Wide-Residual-Networks">Wide Residual Networks </a></li>
-<li class="toc-entry toc-h3"><a href="#ResNext">ResNext </a></li>
-<li class="toc-entry toc-h3"><a href="#Squeeze-and-Ecxcitation-Networks">Squeeze-and-Ecxcitation Networks </a>
+<li class="toc-entry toc-h4"><a href="#Parametric-Relu:">Parametric Relu: </a></li>
+<li class="toc-entry toc-h4"><a href="#Kaiming-Initialization--(I-didn't-fully-understand-the-heavy-math-in-this-lecture,-as-Im-still-weak-in-statistics-and-variance-calculations):">Kaiming Initialization  (I didn&#39;t fully understand the heavy math in this lecture, as Im still weak in statistics and variance calculations): </a></li>
+<li class="toc-entry toc-h4"><a href="#Label-smoothing-regularization">Label smoothing regularization </a></li>
+<li class="toc-entry toc-h4"><a href="#ResNet">ResNet </a>
 <ul>
-<li class="toc-entry toc-h4"><a href="#Squeeze-:-just-a-global-averaging-step">Squeeze : just a global averaging step </a></li>
-<li class="toc-entry toc-h4"><a href="#Excitation:-is-just-a-fully-connected-newtwork">Excitation: is just a fully connected newtwork </a></li>
-<li class="toc-entry toc-h4"><a href="#Scaling-:-multiply-every-channel-with-the-corresponding-exctitiaiton-value,-more-like-attention">Scaling : multiply every channel with the corresponding exctitiaiton value, more like attention </a></li>
+<li class="toc-entry toc-h5"><a href="#Identity-mapping-in-resnets">Identity mapping in resnets </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h3"><a href="#Spatial-Transformer-Network">Spatial Transformer Network </a></li>
-<li class="toc-entry toc-h3"><a href="#Dynamic-Routing-between-capsuls">Dynamic Routing between capsuls </a></li>
-<li class="toc-entry toc-h3"><a href="#Knowledge-Distillation">Knowledge Distillation </a></li>
-<li class="toc-entry toc-h3"><a href="#Network-Pruning:">Network Pruning: </a></li>
-<li class="toc-entry toc-h3"><a href="#Quantization">Quantization </a></li>
-<li class="toc-entry toc-h3"><a href="#Huffman-Coding">Huffman Coding </a></li>
-<li class="toc-entry toc-h3"><a href="#Squeeze-Net">Squeeze Net </a></li>
-<li class="toc-entry toc-h3"><a href="#XNOR-NET">XNOR-NET </a></li>
+<li class="toc-entry toc-h4"><a href="#Wide-Residual-Networks">Wide Residual Networks </a></li>
+<li class="toc-entry toc-h4"><a href="#ResNext">ResNext </a></li>
+<li class="toc-entry toc-h4"><a href="#Squeeze-and-Ecxcitation-Networks">Squeeze-and-Ecxcitation Networks </a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#Squeeze-:-just-a-global-averaging-step">Squeeze : just a global averaging step </a></li>
+<li class="toc-entry toc-h5"><a href="#Excitation:-is-just-a-fully-connected-newtwork">Excitation: is just a fully connected newtwork </a></li>
+<li class="toc-entry toc-h5"><a href="#Scaling-:-multiply-every-channel-with-the-corresponding-exctitiaiton-value,-more-like-attention">Scaling : multiply every channel with the corresponding exctitiaiton value, more like attention </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h4"><a href="#Spatial-Transformer-Network">Spatial Transformer Network </a></li>
+<li class="toc-entry toc-h4"><a href="#Dynamic-Routing-between-capsuls">Dynamic Routing between capsuls </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#Small-Networks">Small Networks </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#Knowledge-Distillation">Knowledge Distillation </a></li>
+<li class="toc-entry toc-h4"><a href="#Network-Pruning:">Network Pruning: </a></li>
+<li class="toc-entry toc-h4"><a href="#Quantization">Quantization </a></li>
+<li class="toc-entry toc-h4"><a href="#Huffman-Coding">Huffman Coding </a></li>
+<li class="toc-entry toc-h4"><a href="#Squeeze-Net">Squeeze Net </a></li>
+<li class="toc-entry toc-h4"><a href="#XNOR-NET">XNOR-NET </a></li>
+<li class="toc-entry toc-h4"><a href="#Mobile-Nets">Mobile Nets </a></li>
+<li class="toc-entry toc-h4"><a href="#Xception">Xception </a></li>
+<li class="toc-entry toc-h4"><a href="#Mobile-Net-V2">Mobile Net V2 </a></li>
+<li class="toc-entry toc-h4"><a href="#SuffleNet">SuffleNet </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#Auto-ML">Auto ML </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#Regularized-Evolution">Regularized Evolution </a></li>
+<li class="toc-entry toc-h4"><a href="#EfficientNet">EfficientNet </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#Robustness">Robustness </a></li>
+<li class="toc-entry toc-h3"><a href="#Visualizing-&-Understanding">Visualizing &amp; Understanding </a></li>
+<li class="toc-entry toc-h3"><a href="#Transfer-Learning">Transfer Learning </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Image-Transformation">Image Transformation </a></li>
+<li class="toc-entry toc-h2"><a href="#Object-Detection">Object Detection </a></li>
 </ul>
 </li>
 </ul><!--
@@ -271,9 +302,36 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Network-In-Network">
-<a class="anchor" href="#Network-In-Network" aria-hidden="true"><span class="octicon octicon-link"></span></a>Network In Network<a class="anchor-link" href="#Network-In-Network"> </a>
+<h1 id="Computer-Vision">
+<a class="anchor" href="#Computer-Vision" aria-hidden="true"><span class="octicon octicon-link"></span></a>Computer Vision<a class="anchor-link" href="#Computer-Vision"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Image-Classification">
+<a class="anchor" href="#Image-Classification" aria-hidden="true"><span class="octicon octicon-link"></span></a>Image Classification<a class="anchor-link" href="#Image-Classification"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Large-Networks">
+<a class="anchor" href="#Large-Networks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Large Networks<a class="anchor-link" href="#Large-Networks"> </a>
 </h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Network-In-Network">
+<a class="anchor" href="#Network-In-Network" aria-hidden="true"><span class="octicon octicon-link"></span></a>Network In Network<a class="anchor-link" href="#Network-In-Network"> </a>
+</h4>
 <ul>
 <li>
 <p>the main idea is to put a network inside another network</p>
@@ -312,12 +370,12 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="VGG-Net">
+<h4 id="VGG-Net">
 <a class="anchor" href="#VGG-Net" aria-hidden="true"><span class="octicon octicon-link"></span></a>VGG Net<a class="anchor-link" href="#VGG-Net"> </a>
-</h3>
-<h4 id="Local-Response-Normalization:">
-<a class="anchor" href="#Local-Response-Normalization:" aria-hidden="true"><span class="octicon octicon-link"></span></a>Local Response Normalization:<a class="anchor-link" href="#Local-Response-Normalization:"> </a>
 </h4>
+<h5 id="Local-Response-Normalization:">
+<a class="anchor" href="#Local-Response-Normalization:" aria-hidden="true"><span class="octicon octicon-link"></span></a>Local Response Normalization:<a class="anchor-link" href="#Local-Response-Normalization:"> </a>
+</h5>
 <ul>
 <li>
 <p>the idea is to normalize a pixel across nearing channels</p>
@@ -326,9 +384,9 @@ window.onload = wrap_img;
 <p>after comparing nets with lrn and nets without, they didn't find big difference, so they stoped using it</p>
 </li>
 </ul>
-<h4 id="Data-Augmentation">
+<h5 id="Data-Augmentation">
 <a class="anchor" href="#Data-Augmentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data Augmentation<a class="anchor-link" href="#Data-Augmentation"> </a>
-</h4>
+</h5>
 <ul>
 <li>Image translations( random crops), and horizontal reflection </li>
 <li>altering the intensities of the RGB channels </li>
@@ -341,9 +399,9 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="GoogleNet">
+<h4 id="GoogleNet">
 <a class="anchor" href="#GoogleNet" aria-hidden="true"><span class="octicon octicon-link"></span></a>GoogleNet<a class="anchor-link" href="#GoogleNet"> </a>
-</h3>
+</h4>
 <ul>
 <li>You stack multiple inception modules on top of each ohter </li>
 <li>the idea is that you don't have to choose which filter size to use, so why don't use them all </li>
@@ -357,9 +415,9 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Batch-Normalization">
+<h4 id="Batch-Normalization">
 <a class="anchor" href="#Batch-Normalization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Batch Normalization<a class="anchor-link" href="#Batch-Normalization"> </a>
-</h3>
+</h4>
 <ul>
 <li>The main goal of batch normalization is to redude the <code>Internal Covariant Shift</code>
 </li>
@@ -382,17 +440,17 @@ window.onload = wrap_img;
 <p>in inference we can't have batch-dependant mean and variance, so we use the average mean and variance for the whole dataset</p>
 </li>
 </ul>
-<h4 id="conv-layers">
+<h5 id="conv-layers">
 <a class="anchor" href="#conv-layers" aria-hidden="true"><span class="octicon octicon-link"></span></a>conv layers<a class="anchor-link" href="#conv-layers"> </a>
-</h4>
+</h5>
 <ul>
 <li>for conv layers we apply normalization across every channel for every pixel in the batch of images</li>
 <li>the effective bach size would be ==&gt; m<em>p</em>q where m is the number of images in the batch and 
 p,q are the image resolution </li>
 </ul>
-<h4 id="Benifits-of-batch-norm:">
+<h5 id="Benifits-of-batch-norm:">
 <a class="anchor" href="#Benifits-of-batch-norm:" aria-hidden="true"><span class="octicon octicon-link"></span></a>Benifits of batch norm:<a class="anchor-link" href="#Benifits-of-batch-norm:"> </a>
-</h4>
+</h5>
 <ul>
 <li>you can use higher learning rate, as the training is more stable </li>
 <li>less sensitive to initialization </li>
@@ -407,9 +465,9 @@ p,q are the image resolution </li>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Parametric-Relu:">
+<h4 id="Parametric-Relu:">
 <a class="anchor" href="#Parametric-Relu:" aria-hidden="true"><span class="octicon octicon-link"></span></a>Parametric Relu:<a class="anchor-link" href="#Parametric-Relu:"> </a>
-</h3>
+</h4>
 <p>$ f({y_i}) = \max(0,y_i) + a_i \min(0, y_i) $</p>
 <ul>
 <li>if $a_i = 0$  --&gt; Relu</li>
@@ -432,9 +490,9 @@ p,q are the image resolution </li>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Kaiming-Initialization--(I-didn't-fully-understand-the-heavy-math-in-this-lecture,-as-Im-still-weak-in-statistics-and-variance-calculations):">
+<h4 id="Kaiming-Initialization--(I-didn't-fully-understand-the-heavy-math-in-this-lecture,-as-Im-still-weak-in-statistics-and-variance-calculations):">
 <a class="anchor" href="#Kaiming-Initialization--(I-didn't-fully-understand-the-heavy-math-in-this-lecture,-as-Im-still-weak-in-statistics-and-variance-calculations):" aria-hidden="true"><span class="octicon octicon-link"></span></a>Kaiming Initialization  (I didn't fully understand the heavy math in this lecture, as Im still weak in statistics and variance calculations):<a class="anchor-link" href="#Kaiming-Initialization--(I-didn't-fully-understand-the-heavy-math-in-this-lecture,-as-Im-still-weak-in-statistics-and-variance-calculations):"> </a>
-</h3>
+</h4>
 <ul>
 <li>professor went into deep mathematical details into how to choose the intial values for weights</li>
 <li>the main idea is to investigate the variance of the response in each layer, so we start by calculating the variance for the output of the layer, and we end up with many terms of the weights multiplied together, so to prevent it it from vanishing or exploding, we  want the weights to have values centred around 1 </li>
@@ -446,9 +504,9 @@ p,q are the image resolution </li>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Label-smoothing-regularization">
+<h4 id="Label-smoothing-regularization">
 <a class="anchor" href="#Label-smoothing-regularization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Label smoothing regularization<a class="anchor-link" href="#Label-smoothing-regularization"> </a>
-</h3>
+</h4>
 <ul>
 <li>the idea is to reagularize the notwork by giving random false labels for a few examples of the dataset </li>
 </ul>
@@ -459,15 +517,15 @@ p,q are the image resolution </li>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="ResNet">
+<h4 id="ResNet">
 <a class="anchor" href="#ResNet" aria-hidden="true"><span class="octicon octicon-link"></span></a>ResNet<a class="anchor-link" href="#ResNet"> </a>
-</h3>
+</h4>
 <ul>
 <li>The main idea is to make the NN deeper so that it becomes better, but the idea is that when you do that, the network gets worse, so we can fix that by adding a resdual connection.</li>
 </ul>
-<h3 id="Identity-mapping-in-resnets">
+<h5 id="Identity-mapping-in-resnets">
 <a class="anchor" href="#Identity-mapping-in-resnets" aria-hidden="true"><span class="octicon octicon-link"></span></a>Identity mapping in resnets<a class="anchor-link" href="#Identity-mapping-in-resnets"> </a>
-</h3>
+</h5>
 <ul>
 <li>the idea is to do no non-linear operations on the main branch(identity mapping), so that the keep a deep flow of the data both in forward and backward pathes </li>
 </ul>
@@ -478,9 +536,9 @@ p,q are the image resolution </li>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Wide-Residual-Networks">
+<h4 id="Wide-Residual-Networks">
 <a class="anchor" href="#Wide-Residual-Networks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Wide Residual Networks<a class="anchor-link" href="#Wide-Residual-Networks"> </a>
-</h3>
+</h4>
 <ul>
 <li>an attempt to make resnets wider and study if that would make them better </li>
 </ul>
@@ -491,9 +549,9 @@ p,q are the image resolution </li>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="ResNext">
+<h4 id="ResNext">
 <a class="anchor" href="#ResNext" aria-hidden="true"><span class="octicon octicon-link"></span></a>ResNext<a class="anchor-link" href="#ResNext"> </a>
-</h3>
+</h4>
 <ul>
 <li>just like resnets but they changed bottleneck blocks with group convolution block </li>
 </ul>
@@ -504,18 +562,18 @@ p,q are the image resolution </li>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Squeeze-and-Ecxcitation-Networks">
+<h4 id="Squeeze-and-Ecxcitation-Networks">
 <a class="anchor" href="#Squeeze-and-Ecxcitation-Networks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Squeeze-and-Ecxcitation Networks<a class="anchor-link" href="#Squeeze-and-Ecxcitation-Networks"> </a>
-</h3>
-<h4 id="Squeeze-:-just-a-global-averaging-step">
+</h4>
+<h5 id="Squeeze-:-just-a-global-averaging-step">
 <a class="anchor" href="#Squeeze-:-just-a-global-averaging-step" aria-hidden="true"><span class="octicon octicon-link"></span></a>Squeeze : just a global averaging step<a class="anchor-link" href="#Squeeze-:-just-a-global-averaging-step"> </a>
-</h4>
-<h4 id="Excitation:-is-just-a-fully-connected-newtwork">
+</h5>
+<h5 id="Excitation:-is-just-a-fully-connected-newtwork">
 <a class="anchor" href="#Excitation:-is-just-a-fully-connected-newtwork" aria-hidden="true"><span class="octicon octicon-link"></span></a>Excitation: is just a fully connected newtwork<a class="anchor-link" href="#Excitation:-is-just-a-fully-connected-newtwork"> </a>
-</h4>
-<h4 id="Scaling-:-multiply-every-channel-with-the-corresponding-exctitiaiton-value,-more-like-attention">
+</h5>
+<h5 id="Scaling-:-multiply-every-channel-with-the-corresponding-exctitiaiton-value,-more-like-attention">
 <a class="anchor" href="#Scaling-:-multiply-every-channel-with-the-corresponding-exctitiaiton-value,-more-like-attention" aria-hidden="true"><span class="octicon octicon-link"></span></a>Scaling : multiply every channel with the corresponding exctitiaiton value, more like attention<a class="anchor-link" href="#Scaling-:-multiply-every-channel-with-the-corresponding-exctitiaiton-value,-more-like-attention"> </a>
-</h4>
+</h5>
 <ul>
 <li>scaling is you paying different attention to different channels like attention models </li>
 </ul>
@@ -526,9 +584,9 @@ p,q are the image resolution </li>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Spatial-Transformer-Network">
+<h4 id="Spatial-Transformer-Network">
 <a class="anchor" href="#Spatial-Transformer-Network" aria-hidden="true"><span class="octicon octicon-link"></span></a>Spatial Transformer Network<a class="anchor-link" href="#Spatial-Transformer-Network"> </a>
-</h3>
+</h4>
 <ul>
 <li>
 <p>the main idea is to seperate the main object in the image, like putting a box around it and then this box can be resized, shifted, rotated. so in the end we have a focused image that has only the object, and so we can apply convolution on it and it would be easy then</p>
@@ -545,9 +603,9 @@ p,q are the image resolution </li>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Dynamic-Routing-between-capsuls">
+<h4 id="Dynamic-Routing-between-capsuls">
 <a class="anchor" href="#Dynamic-Routing-between-capsuls" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dynamic Routing between capsuls<a class="anchor-link" href="#Dynamic-Routing-between-capsuls"> </a>
-</h3>
+</h4>
 <ul>
 <li>the idea is to make the outputs of the capsule has a norm that is the probability that an object is presenet</li>
 </ul>
@@ -558,9 +616,18 @@ p,q are the image resolution </li>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Knowledge-Distillation">
-<a class="anchor" href="#Knowledge-Distillation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Knowledge Distillation<a class="anchor-link" href="#Knowledge-Distillation"> </a>
+<h3 id="Small-Networks">
+<a class="anchor" href="#Small-Networks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Small Networks<a class="anchor-link" href="#Small-Networks"> </a>
 </h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Knowledge-Distillation">
+<a class="anchor" href="#Knowledge-Distillation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Knowledge Distillation<a class="anchor-link" href="#Knowledge-Distillation"> </a>
+</h4>
 <ul>
 <li>the main idea in to use an artificial data coming from the gaint model, using the normal training dataset and a smoothed the output from the giant model. then we train the distilled model using this dataset and with the same parameter <code>T</code> that we used to smooth the data. then in production we set the temperature parameter to 1 and use the distilled model for inference.</li>
 </ul>
@@ -571,17 +638,17 @@ p,q are the image resolution </li>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Network-Pruning:">
+<h4 id="Network-Pruning:">
 <a class="anchor" href="#Network-Pruning:" aria-hidden="true"><span class="octicon octicon-link"></span></a>Network Pruning:<a class="anchor-link" href="#Network-Pruning:"> </a>
-</h3>
+</h4>
 <ul>
 <li>all connections with weights below a threshold are removed from the network </li>
 <li>weight are sparse now </li>
 <li>then we can represent them using fewer bits</li>
 </ul>
-<h3 id="Quantization">
+<h4 id="Quantization">
 <a class="anchor" href="#Quantization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quantization<a class="anchor-link" href="#Quantization"> </a>
-</h3>
+</h4>
 <ul>
 <li>we basically cluster our weight to some centroids</li>
 <li>the number of centroids for conv layers are more than the ones for FC layers why:<ul>
@@ -590,9 +657,9 @@ p,q are the image resolution </li>
 </ul>
 </li>
 </ul>
-<h3 id="Huffman-Coding">
+<h4 id="Huffman-Coding">
 <a class="anchor" href="#Huffman-Coding" aria-hidden="true"><span class="octicon octicon-link"></span></a>Huffman Coding<a class="anchor-link" href="#Huffman-Coding"> </a>
-</h3>
+</h4>
 <ul>
 <li>store the more common symbols with more bits </li>
 </ul>
@@ -603,9 +670,9 @@ p,q are the image resolution </li>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Squeeze-Net">
+<h4 id="Squeeze-Net">
 <a class="anchor" href="#Squeeze-Net" aria-hidden="true"><span class="octicon octicon-link"></span></a>Squeeze Net<a class="anchor-link" href="#Squeeze-Net"> </a>
-</h3>
+</h4>
 <ul>
 <li>the idea is to squeeze the network by using one by one convolution thus use one smaller firlter sizes, then expand to make up for the squeeze that is made </li>
 <li>the main idea  is to use one by one comvultion to reduce the dimensionality</li>
@@ -617,9 +684,9 @@ p,q are the image resolution </li>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="XNOR-NET">
+<h4 id="XNOR-NET">
 <a class="anchor" href="#XNOR-NET" aria-hidden="true"><span class="octicon octicon-link"></span></a>XNOR-NET<a class="anchor-link" href="#XNOR-NET"> </a>
-</h3>
+</h4>
 <ul>
 <li>the idea to to convert the weights and inputs to binary values, and so we save a lot in memory and computation</li>
 <li>the idea is to use a pre trained weights, then you try to binariez the weights by trying to approximate ==&gt; $W = \alpha * B $ where alpha  is postative 32 bit constant and B is a binary matrix </li>
@@ -631,6 +698,133 @@ p,q are the image resolution </li>
 </li>
 </ul>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Mobile-Nets">
+<a class="anchor" href="#Mobile-Nets" aria-hidden="true"><span class="octicon octicon-link"></span></a>Mobile Nets<a class="anchor-link" href="#Mobile-Nets"> </a>
+</h4>
+<ul>
+<li>the idea is to reduce computation complexity by doing conv for each channel sperately, and not across channels.</li>
+<li>so we use number of filters as the same as the input channels</li>
+<li>but then we will end up with  output size as the input size, so we still need to do one by one convolution to output the correct size</li>
+</ul>
+<h4 id="Xception">
+<a class="anchor" href="#Xception" aria-hidden="true"><span class="octicon octicon-link"></span></a>Xception<a class="anchor-link" href="#Xception"> </a>
+</h4>
+<ul>
+<li>unify the filters sizes for the inception, and then apply them for each channel sperately, then do one by one convolution to fix the output size</li>
+</ul>
+<h4 id="Mobile-Net-V2">
+<a class="anchor" href="#Mobile-Net-V2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Mobile Net V2<a class="anchor-link" href="#Mobile-Net-V2"> </a>
+</h4>
+<ul>
+<li>the same as MobileNet, but with Residuals connecions.</li>
+</ul>
+<h4 id="SuffleNet">
+<a class="anchor" href="#SuffleNet" aria-hidden="true"><span class="octicon octicon-link"></span></a>SuffleNet<a class="anchor-link" href="#SuffleNet"> </a>
+</h4>
+<ul>
+<li>the idea is to suffle channels after doing a group convultion </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Auto-ML">
+<a class="anchor" href="#Auto-ML" aria-hidden="true"><span class="octicon octicon-link"></span></a>Auto ML<a class="anchor-link" href="#Auto-ML"> </a>
+</h3>
+<ul>
+<li>the question is can we automate architicture engineering, as we automated feature engineering in DL?</li>
+<li>we can use RNN to output a probability, to sample an architicture from, then use train using this arch, and give the eval acc, as a feedback to the RNN </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Regularized-Evolution">
+<a class="anchor" href="#Regularized-Evolution" aria-hidden="true"><span class="octicon octicon-link"></span></a>Regularized Evolution<a class="anchor-link" href="#Regularized-Evolution"> </a>
+</h4>
+<ul>
+<li>it's basically random search + selection</li>
+<li>at first you randomly choose some  architecture  train, and eval on it and push it to to the population</li>
+<li>then you sample some arch. from the population</li>
+<li>then u select the best acc model from your samples , and then mutate it (ie. change some of its arch.), then add it to your samples </li>
+<li>then remove the oldest arch. in the population</li>
+<li>you keep repeating this cycle till you evolve for C cycles (history size reaches the limit) and report the best arch.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="EfficientNet">
+<a class="anchor" href="#EfficientNet" aria-hidden="true"><span class="octicon octicon-link"></span></a>EfficientNet<a class="anchor-link" href="#EfficientNet"> </a>
+</h4>
+<ul>
+<li>the idea is that we do grid seach on a small network to come with the best depth scaling coefficient <code>d</code>, width scaling coefficient <code>w</code>, and resolution scalling coefficient <code>r</code>, then we try to find scaling parameter $\phi$, that gives the best accuracy while maintaning the <code>flops</code> under the limit</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Robustness">
+<a class="anchor" href="#Robustness" aria-hidden="true"><span class="octicon octicon-link"></span></a>Robustness<a class="anchor-link" href="#Robustness"> </a>
+</h3>
+<ul>
+<li>The main goal is to make your network robust against adverarial attacks</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Visualizing-&amp;-Understanding">
+<a class="anchor" href="#Visualizing-&amp;-Understanding" aria-hidden="true"><span class="octicon octicon-link"></span></a>Visualizing &amp; Understanding<a class="anchor-link" href="#Visualizing-&amp;-Understanding"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Transfer-Learning">
+<a class="anchor" href="#Transfer-Learning" aria-hidden="true"><span class="octicon octicon-link"></span></a>Transfer Learning<a class="anchor-link" href="#Transfer-Learning"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Image-Transformation">
+<a class="anchor" href="#Image-Transformation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Image Transformation<a class="anchor-link" href="#Image-Transformation"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Object-Detection">
+<a class="anchor" href="#Object-Detection" aria-hidden="true"><span class="octicon octicon-link"></span></a>Object Detection<a class="anchor-link" href="#Object-Detection"> </a>
+</h2>
 </div>
 </div>
 </div>

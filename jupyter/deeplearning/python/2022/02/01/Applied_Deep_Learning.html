@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      11 min read
+      12 min read
     
 </span></p>
 
@@ -829,6 +829,21 @@ p,q are the image resolution </li>
 <h3 id="Visualizing-&amp;-Understanding">
 <a class="anchor" href="#Visualizing-&amp;-Understanding" aria-hidden="true"><span class="octicon octicon-link"></span></a>Visualizing &amp; Understanding<a class="anchor-link" href="#Visualizing-&amp;-Understanding"> </a>
 </h3>
+<ul>
+<li>now we want to debug our network, to understand how it works</li>
+<li>so we want do a backward pass, by inverting our forward pass, but then we habe a problem with pooling layers as we subsamples the input.</li>
+<li>so we store the locations for the max pixels that we choose in our pooling operation, so that we can upsample the input again in the backward pass.</li>
+<li>we call these max locations, switches</li>
+<li>the main idea is, visualising the feature maps, gonna help you modify the network </li>
+<li>you can have two models that have the same output for the same input but which one do you trust more?<ul>
+<li>to answer that, you need to see which features each one of them focuses on, so if one of them focuses on features that are important to classfication, then this model is more trustworthy 
+#### LIME: Local Interpretable Model-agnsortic Explanations</li>
+</ul>
+</li>
+<li>you want to make trust the model, meaning that you wanna maek sure the model parioritized the important features</li>
+<li>but you can't interprete non linear models, so the idea is to make a locally linear model, that have the same output for your local input example, then use this linear model to get the features that the model parioritrized </li>
+</ul>
+
 </div>
 </div>
 </div>

@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      10 min read
+      11 min read
     
 </span></p>
 
@@ -201,7 +201,12 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h4"><a href="#EfficientNet">EfficientNet </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h3"><a href="#Robustness">Robustness </a></li>
+<li class="toc-entry toc-h3"><a href="#Robustness">Robustness </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#Intrigiong-peroperties-of-neural-networks">Intrigiong peroperties of neural networks </a></li>
+<li class="toc-entry toc-h4"><a href="#Towards-Evaluating-the-Robustness-of-Neural-Networks">Towards Evaluating the Robustness of Neural Networks </a></li>
+</ul>
+</li>
 <li class="toc-entry toc-h3"><a href="#Visualizing-&-Understanding">Visualizing &amp; Understanding </a></li>
 <li class="toc-entry toc-h3"><a href="#Transfer-Learning">Transfer Learning </a></li>
 </ul>
@@ -788,6 +793,32 @@ p,q are the image resolution </li>
 <ul>
 <li>The main goal is to make your network robust against adverarial attacks</li>
 </ul>
+<h4 id="Intrigiong-peroperties-of-neural-networks">
+<a class="anchor" href="#Intrigiong-peroperties-of-neural-networks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Intrigiong peroperties of neural networks<a class="anchor-link" href="#Intrigiong-peroperties-of-neural-networks"> </a>
+</h4>
+<ul>
+<li>there's nothing special about individual units, and the individual features that the network learn, and they you can interpret any random direction. So, the entire spacd matters </li>
+<li>neural networks  has blind spots, this  means you can add small pertirbations to an image, they are not noticable to the human eye, but they make the network wrongly classify the image  </li>
+<li>
+<p>Adversiral examples tend to stay hard even for models trained with different hyper-parameters, or ever for different training datasets</p>
+</li>
+<li>
+<p>you can train your network to defend against attacks but that's expensive, as: first, you have to train your network, then train it again to find some adversiral attacks, then add those examples to the training set, and finally train for a third time.</p>
+</li>
+<li>
+<p>small perturbation to the image, leads to huge perturbation to the activation, due to high dimensionality
+#### untargeted adversiral examples</p>
+</li>
+<li>fast gradient sign: using the trick of the sign of the loss gradient, and add it to the original image to generate an adversiral example </li>
+<li>then you can just add a weighted loss, one for the  orginal example, and another for the adversiral one, so that the network would be more robust to adversiral examples </li>
+</ul>
+<h4 id="Towards-Evaluating-the-Robustness-of-Neural-Networks">
+<a class="anchor" href="#Towards-Evaluating-the-Robustness-of-Neural-Networks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Towards Evaluating the Robustness of Neural Networks<a class="anchor-link" href="#Towards-Evaluating-the-Robustness-of-Neural-Networks"> </a>
+</h4>
+<ul>
+<li>another way to generate targetted adversiral examples is: to choose a function that forces the network to make the logits for the targeted example the biggest, so that this class is selected. </li>
+</ul>
+<p><img src="/Boda-Blog/images/copied_from_nb/assets/Applied_deep_learning/adversiral-attack-algo.png" alt=""></p>
 
 </div>
 </div>

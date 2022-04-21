@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      5 min read
+      6 min read
     
 </span></p>
 
@@ -179,6 +179,7 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h4"><a href="#deduction-vs-induction:">deduction vs induction: </a></li>
 </ul>
 </li>
+<li class="toc-entry toc-h3"><a href="#Part3">Part3 </a></li>
 </ul>
 </li>
 </ul><!--
@@ -403,7 +404,7 @@ DDP registers autograd hooks during construction, one hook per parameter. These 
 <li>if the algorithm works, <strong>THERE HAS TO BE A BIAS</strong>
 </li>
 <li>the inductive bias, rules over our function space 
-### PArt 2:</li>
+### Part 2:</li>
 <li>it;s not hard for ML algorithm to correctly predict training labels</li>
 <li>usually ML algorithms make training errors, that is the function,they come up with doesn't perfectly fit the training data</li>
 <li>what we care about is the performance on teh test set</li>
@@ -418,7 +419,26 @@ DDP registers autograd hooks during construction, one hook per parameter. These 
 <li>k nearest algo achieves good results on MNIST dataset for classifying two classes, with simple euclidean distance function</li>
 <li>k-nearest can be used for density estimation, clustering, outlier detection </li>
 <li>the inductive bias in K nearest algo, is that near points are the of teh same category </li>
-<li>the challenging part about k nearest algo is how to measure the distance between points </li>
+<li>the challenging part about k nearest algo is how to measure the distance between points</li>
+</ul>
+<h3 id="Part3">
+<a class="anchor" href="#Part3" aria-hidden="true"><span class="octicon octicon-link"></span></a>Part3<a class="anchor-link" href="#Part3"> </a>
+</h3>
+<ul>
+<li>for ML, we don't put any assmuptions for the data probability ditribution</li>
+<li>often, the input and output are random variables </li>
+<li>in some applications, it's important that the loss depends on the input X.</li>
+<li>also in some cases, the type of error is critical, for exp. spaam detection </li>
+<li>Bayes risk: is the min error for the expected values over all examples --&gt; basically the it's the lowest error you can achieve</li>
+<li>Consistency: we say algorithm A is consistent, if we have an infinite iid datapoints, and the risk of algorithm's selected function converges to the Baye's risk. <ul>
+<li>basically means that if we have infinite data samples, then our algorthms reaches the Bayes risk, which is the lowest error possible </li>
+</ul>
+</li>
+<li>Universally consistent: no mattter the underlying probability distribution is, when we have enough data points, the algorithm would be consistent<ul>
+<li>consistent independantly of the data distribution</li>
+<li>KNN classifier, SVM, boositn, random forests are universally consistent</li>
+</ul>
+</li>
 </ul>
 
 </div>

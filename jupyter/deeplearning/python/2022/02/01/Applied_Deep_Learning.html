@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      12 min read
+      14 min read
     
 </span></p>
 
@@ -207,11 +207,24 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h4"><a href="#Towards-Evaluating-the-Robustness-of-Neural-Networks">Towards Evaluating the Robustness of Neural Networks </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h3"><a href="#Visualizing-&-Understanding">Visualizing &amp; Understanding </a></li>
+<li class="toc-entry toc-h3"><a href="#Visualizing-&-Understanding">Visualizing &amp; Understanding </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#Understanding-Deep-Learning-Requires-Rethinking-Generalization">Understanding Deep Learning Requires Rethinking Generalization </a></li>
+</ul>
+</li>
 <li class="toc-entry toc-h3"><a href="#Transfer-Learning">Transfer Learning </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h2"><a href="#Image-Transformation">Image Transformation </a></li>
+<li class="toc-entry toc-h2"><a href="#Image-Transformation">Image Transformation </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Semantic-Segmentation">Semantic Segmentation </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#Atrous-Convolution:">Atrous Convolution: </a></li>
+<li class="toc-entry toc-h4"><a href="#Dilated-Convolution:">Dilated Convolution: </a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toc-entry toc-h2"><a href="#Object-Detection">Object Detection </a></li>
 </ul>
 </li>
@@ -843,6 +856,21 @@ p,q are the image resolution </li>
 <li>you want to make trust the model, meaning that you wanna maek sure the model parioritized the important features</li>
 <li>but you can't interprete non linear models, so the idea is to make a locally linear model, that have the same output for your local input example, then use this linear model to get the features that the model parioritrized </li>
 </ul>
+<h4 id="Understanding-Deep-Learning-Requires-Rethinking-Generalization">
+<a class="anchor" href="#Understanding-Deep-Learning-Requires-Rethinking-Generalization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Understanding Deep Learning Requires Rethinking Generalization<a class="anchor-link" href="#Understanding-Deep-Learning-Requires-Rethinking-Generalization"> </a>
+</h4>
+<ul>
+<li>NN are powerful enough to fit random data, but then it will not generalize for test data </li>
+<li>so when we indroduce radom labels, random pixels, etc: we still can go for 0 train loss, but for test data, the error is gonna be equal to random selection.</li>
+<li>
+<p>so, this means: The model architecture itself isn't a sufficient regularizer.</p>
+</li>
+<li>
+<p>Explicit regularization: dropout, weight decay, data augmentation</p>
+</li>
+<li>Implicit regularization: early stopping</li>
+<li>there exist a two-layer NN with Relu activation, that can fit any N random example</li>
+</ul>
 
 </div>
 </div>
@@ -853,6 +881,15 @@ p,q are the image resolution </li>
 <h3 id="Transfer-Learning">
 <a class="anchor" href="#Transfer-Learning" aria-hidden="true"><span class="octicon octicon-link"></span></a>Transfer Learning<a class="anchor-link" href="#Transfer-Learning"> </a>
 </h3>
+<ul>
+<li>labled data is expensive</li>
+<li>you split a data set in half,we find that transfer learning for the same task, have higher acc'</li>
+<li>transfer learning with fine-tuned weight is better than locking the learned weights</li>
+<li>on average you just wanna cut the network in he middle and start learingn after few layers, as the first few layers ar more general leayers and can acctually help you in traninge for another task
+#### DeCAF</li>
+<li>first layers learn low-level features, whereas latter layers learn semantic or high-lebel features</li>
+</ul>
+
 </div>
 </div>
 </div>
@@ -868,9 +905,46 @@ p,q are the image resolution </li>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Semantic-Segmentation">
+<a class="anchor" href="#Semantic-Segmentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Semantic Segmentation<a class="anchor-link" href="#Semantic-Segmentation"> </a>
+</h3>
+<ul>
+<li>you want to segments different classes in the image</li>
+<li>The fully connected layers can also be viewed as convoluting with kernels that cover their entire input regions.</li>
+</ul>
+<h4 id="Atrous-Convolution:">
+<a class="anchor" href="#Atrous-Convolution:" aria-hidden="true"><span class="octicon octicon-link"></span></a>Atrous Convolution:<a class="anchor-link" href="#Atrous-Convolution:"> </a>
+</h4>
+<ul>
+<li>you don't wanna lose much info when you do conv,  and then upsample again, so you fill your filter with holes, so that you lose less info</li>
+<li>reduce the degree of signal downsampling 
+#### CRF: </li>
+<li>deals with the reduced localization accuracy due to the Deep Convolution NN invariance </li>
+</ul>
+<h4 id="Dilated-Convolution:">
+<a class="anchor" href="#Dilated-Convolution:" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dilated Convolution:<a class="anchor-link" href="#Dilated-Convolution:"> </a>
+</h4>
+<ul>
+<li>basically atrous convolution</li>
+<li>increases the  size of the receptive points layer by layer</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Object-Detection">
 <a class="anchor" href="#Object-Detection" aria-hidden="true"><span class="octicon octicon-link"></span></a>Object Detection<a class="anchor-link" href="#Object-Detection"> </a>
 </h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
 </div>
 </div>
 </div>

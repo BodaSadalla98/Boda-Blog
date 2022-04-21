@@ -141,7 +141,7 @@ window.onload = wrap_img;
 
   <div class="post-content e-content" itemprop="articleBody">
     <ul class="section-nav">
-<li class="toc-entry toc-h1"><a href="#Course-1">Course 1 </a>
+<li class="toc-entry toc-h1"><a href="#Course-1:-Classification-and-vector-Spaces">Course 1: Classification and vector Spaces </a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#Weak-4">Weak 4 </a>
 <ul>
@@ -150,6 +150,17 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h4"><a href="#Locality-senstive-hashing">Locality senstive hashing </a></li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#Course-2:-Probabilstic-Models">Course 2: Probabilstic Models </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Week-1:-Autocorrect">Week 1: Autocorrect </a></li>
+<li class="toc-entry toc-h2"><a href="#Week-2:-POS-using-Viterbi-algorithm">Week 2: POS using Viterbi algorithm </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Markov-Chains:">Markov Chains: </a></li>
+<li class="toc-entry toc-h3"><a href="#Viterbi-algorithm">Viterbi algorithm </a></li>
 </ul>
 </li>
 </ul>
@@ -166,8 +177,8 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Course-1">
-<a class="anchor" href="#Course-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Course 1<a class="anchor-link" href="#Course-1"> </a>
+<h1 id="Course-1:-Classification-and-vector-Spaces">
+<a class="anchor" href="#Course-1:-Classification-and-vector-Spaces" aria-hidden="true"><span class="octicon octicon-link"></span></a>Course 1: Classification and vector Spaces<a class="anchor-link" href="#Course-1:-Classification-and-vector-Spaces"> </a>
 </h1>
 </div>
 </div>
@@ -195,6 +206,72 @@ window.onload = wrap_img;
 <li>
 <p>but how can we be sure, that the planes that we chose are the perfect set to seperate our space, we can't be sure of that, so we create a multi sets of random planes and every set would get us a different way to seperate our words</p>
 </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Course-2:-Probabilstic-Models">
+<a class="anchor" href="#Course-2:-Probabilstic-Models" aria-hidden="true"><span class="octicon octicon-link"></span></a>Course 2: Probabilstic Models<a class="anchor-link" href="#Course-2:-Probabilstic-Models"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Week-1:-Autocorrect">
+<a class="anchor" href="#Week-1:-Autocorrect" aria-hidden="true"><span class="octicon octicon-link"></span></a>Week 1: Autocorrect<a class="anchor-link" href="#Week-1:-Autocorrect"> </a>
+</h2>
+<ul>
+<li>to make a simple auto-correction system, you need to perform 4 simple steps:<ul>
+<li>you need to identify the miss spelled words</li>
+<li>get the n edit distance correct words</li>
+<li>filter these candidates for correct words in the dictionary</li>
+<li>change miss spelled word with one that has the highest probability</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Week-2:-POS-using-Viterbi-algorithm">
+<a class="anchor" href="#Week-2:-POS-using-Viterbi-algorithm" aria-hidden="true"><span class="octicon octicon-link"></span></a>Week 2: POS using Viterbi algorithm<a class="anchor-link" href="#Week-2:-POS-using-Viterbi-algorithm"> </a>
+</h2>
+<ul>
+<li>Part of Speech Tagging (POS) is the process of assigning a part of speech to a word</li>
+<li>You can use part of speech tagging for: <ul>
+<li>Identifying named entities</li>
+<li>Speech recognition</li>
+<li>Co-reference Resolution</li>
+</ul>
+</li>
+<li>You can use the probabilities of POS tags happening near one another to come up with the most reasonable output.</li>
+</ul>
+<h3 id="Markov-Chains:">
+<a class="anchor" href="#Markov-Chains:" aria-hidden="true"><span class="octicon octicon-link"></span></a>Markov Chains:<a class="anchor-link" href="#Markov-Chains:"> </a>
+</h3>
+<ul>
+<li>You can use Markov chains to identify the probability of the next word.</li>
+<li>calculate transmission probability</li>
+<li>calculate emission probability</li>
+</ul>
+<h3 id="Viterbi-algorithm">
+<a class="anchor" href="#Viterbi-algorithm" aria-hidden="true"><span class="octicon octicon-link"></span></a>Viterbi algorithm<a class="anchor-link" href="#Viterbi-algorithm"> </a>
+</h3>
+<ul>
+<li>calculates a probability for each possible path</li>
+<li>a probability for a given state, is the (transition probability * emission probability)</li>
+<li>total probability of the path, is to product of all states probabilities </li>
+<li>we use a top down dynamic programming algorithm to build the paths matrix </li>
+<li>we use sum of logs instead of product of probabilities, to avoid converging to zero values  </li>
 </ul>
 
 </div>

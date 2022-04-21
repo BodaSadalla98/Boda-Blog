@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      3 min read
+      5 min read
     
 </span></p>
 
@@ -163,6 +163,20 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h3"><a href="#DataParallel-VS-DistributedDataParallel">DataParallel VS DistributedDataParallel </a>
 <ul>
 <li class="toc-entry toc-h4"><a href="#Resources">Resources </a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Complete-Statistical-Theory-of-Learning---Vladimir-Vapnik">Complete Statistical Theory of Learning - Vladimir Vapnik </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Ref:-https://www.youtube.com/watch?v=Ow25mjFjSmg">Ref: https://www.youtube.com/watch?v=Ow25mjFjSmg </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Statistical-Machine-Learning">Statistical Machine Learning </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#part-1:">part 1: </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#deduction-vs-induction:">deduction vs induction: </a></li>
 </ul>
 </li>
 </ul>
@@ -333,6 +347,11 @@ DDP registers autograd hooks during construction, one hook per parameter. These 
 <li>
 <code>DataParallel</code> doesn't support model parallel </li>
 </ul>
+<h4 id="Resources">
+<a class="anchor" href="#Resources" aria-hidden="true"><span class="octicon octicon-link"></span></a>Resources<a class="anchor-link" href="#Resources"> </a>
+</h4>
+<pre><code>- https://pytorch.org/docs/master/notes/ddp.html
+- https://pytorch.org/tutorials/intermediate/ddp_tutorial.html?highlight=distributed%20training</code></pre>
 
 </div>
 </div>
@@ -340,11 +359,67 @@ DDP registers autograd hooks during construction, one hook per parameter. These 
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Resources">
-<a class="anchor" href="#Resources" aria-hidden="true"><span class="octicon octicon-link"></span></a>Resources<a class="anchor-link" href="#Resources"> </a>
+<h2 id="Complete-Statistical-Theory-of-Learning---Vladimir-Vapnik">
+<a class="anchor" href="#Complete-Statistical-Theory-of-Learning---Vladimir-Vapnik" aria-hidden="true"><span class="octicon octicon-link"></span></a>Complete Statistical Theory of Learning - <strong>Vladimir Vapnik</strong><a class="anchor-link" href="#Complete-Statistical-Theory-of-Learning---Vladimir-Vapnik"> </a>
+</h2>
+<ul>
+<li>There are two ways for generalization: more data, and complete learning theory</li>
+<li>Turing said, that you should imitate intelligent person </li>
+</ul>
+<h3 id="Ref:-https://www.youtube.com/watch?v=Ow25mjFjSmg">
+<a class="anchor" href="#Ref:-https://www.youtube.com/watch?v=Ow25mjFjSmg" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ref: <a href="https://www.youtube.com/watch?v=Ow25mjFjSmg">https://www.youtube.com/watch?v=Ow25mjFjSmg</a><a class="anchor-link" href="#Ref:-https://www.youtube.com/watch?v=Ow25mjFjSmg"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Statistical-Machine-Learning">
+<a class="anchor" href="#Statistical-Machine-Learning" aria-hidden="true"><span class="octicon octicon-link"></span></a>Statistical Machine Learning<a class="anchor-link" href="#Statistical-Machine-Learning"> </a>
+</h2>
+<h3 id="part-1:">
+<a class="anchor" href="#part-1:" aria-hidden="true"><span class="octicon octicon-link"></span></a>part 1:<a class="anchor-link" href="#part-1:"> </a>
+</h3>
+<h4 id="deduction-vs-induction:">
+<a class="anchor" href="#deduction-vs-induction:" aria-hidden="true"><span class="octicon octicon-link"></span></a>deduction vs induction:<a class="anchor-link" href="#deduction-vs-induction:"> </a>
 </h4>
-<pre><code>- https://pytorch.org/docs/master/notes/ddp.html
-- https://pytorch.org/tutorials/intermediate/ddp_tutorial.html?highlight=distributed%20training</code></pre>
+<ul>
+<li>deduction: is the process of reasoning from one or more general statements to reach a logically certain conclusion. premises must be correct.</li>
+<li>induction:  reasoning that construct or evaluates general proposition that are derived from specific examples. we can never be sure our conclusion can be wrong! </li>
+<li>machine learning tries to automate the process of inductive inference.<br>
+#### why should ML work?</li>
+<li>ML tries to find patterns in data </li>
+<li>we will only be able to learn if there's something to learn</li>
+<li>ML makes some assumptions, which are are rarely made explicit.</li>
+<li>we need to have an idea what we are looking for. This is called "inductive bias". Learning is impossible without such a bias<ul>
+<li>the formal theorem if this is called <code>no free lunch theorem</code>
+</li>
+</ul>
+</li>
+<li>on the other hand, if we have a very strong inductive bias, then with just few training examples, then we can have high certainty in the output</li>
+<li>the problem of selecting a good hypothesis class is called model selection.</li>
+<li>any system that learns has an inductive bias.</li>
+<li>if the algorithm works, <strong>THERE HAS TO BE A BIAS</strong>
+</li>
+<li>the inductive bias, rules over our function space 
+### PArt 2:</li>
+<li>it;s not hard for ML algorithm to correctly predict training labels</li>
+<li>usually ML algorithms make training errors, that is the function,they come up with doesn't perfectly fit the training data</li>
+<li>what we care about is the performance on teh test set</li>
+<li>it's not always the case that lowering the train data would lower that test data
+#### K-Nearest algorithms:</li>
+<li>for K-nearest algorithm, <ul>
+<li>the best value for K is log(N)</li>
+<li>if k is too  small ==&gt; overfitting </li>
+<li>if k is too large ==&gt; underfitting</li>
+</ul>
+</li>
+<li>k nearest algo achieves good results on MNIST dataset for classifying two classes, with simple euclidean distance function</li>
+<li>k-nearest can be used for density estimation, clustering, outlier detection </li>
+<li>the inductive bias in K nearest algo, is that near points are the of teh same category </li>
+<li>the challenging part about k nearest algo is how to measure the distance between points </li>
+</ul>
 
 </div>
 </div>

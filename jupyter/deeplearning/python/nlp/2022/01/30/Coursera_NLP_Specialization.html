@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      1 min read
+      2 min read
     
 </span></p>
 
@@ -161,6 +161,12 @@ window.onload = wrap_img;
 <ul>
 <li class="toc-entry toc-h3"><a href="#Markov-Chains:">Markov Chains: </a></li>
 <li class="toc-entry toc-h3"><a href="#Viterbi-algorithm">Viterbi algorithm </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Week3-Autocomplete">Week3 Autocomplete </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#N-Gram-models:">N-Gram models: </a></li>
+<li class="toc-entry toc-h3"><a href="#out-of-vocab-words-and-smoothing">out of vocab words and smoothing </a></li>
 </ul>
 </li>
 </ul>
@@ -272,6 +278,33 @@ window.onload = wrap_img;
 <li>total probability of the path, is to product of all states probabilities </li>
 <li>we use a top down dynamic programming algorithm to build the paths matrix </li>
 <li>we use sum of logs instead of product of probabilities, to avoid converging to zero values  </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Week3-Autocomplete">
+<a class="anchor" href="#Week3-Autocomplete" aria-hidden="true"><span class="octicon octicon-link"></span></a>Week3 Autocomplete<a class="anchor-link" href="#Week3-Autocomplete"> </a>
+</h2>
+<h3 id="N-Gram-models:">
+<a class="anchor" href="#N-Gram-models:" aria-hidden="true"><span class="octicon octicon-link"></span></a>N-Gram models:<a class="anchor-link" href="#N-Gram-models:"> </a>
+</h3>
+<ul>
+<li>it's a language model that predicts probabilities of sentences depending on the probabilities of their N-grams </li>
+<li>to capture the context of beginning end ending of the sentences, we add start and end tokens to each sentence
+### Preplexity:</li>
+<li>a measure to calculate how complex a sentence is</li>
+<li>humans type low preplex sentences</li>
+</ul>
+<h3 id="out-of-vocab-words-and-smoothing">
+<a class="anchor" href="#out-of-vocab-words-and-smoothing" aria-hidden="true"><span class="octicon octicon-link"></span></a>out of vocab words and smoothing<a class="anchor-link" href="#out-of-vocab-words-and-smoothing"> </a>
+</h3>
+<ul>
+<li>we can add UNK token for unseen words in the vocab</li>
+<li>we can apply smoothing of interpolation for unseen Ngrams </li>
 </ul>
 
 </div>

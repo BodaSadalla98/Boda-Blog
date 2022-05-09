@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      2 min read
+      3 min read
     
 </span></p>
 
@@ -169,6 +169,7 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h3"><a href="#out-of-vocab-words-and-smoothing">out of vocab words and smoothing </a></li>
 </ul>
 </li>
+<li class="toc-entry toc-h2"><a href="#Week4:-Word-vectors-using-Bag-of-Words-method">Week4: Word vectors using Bag of Words method </a></li>
 </ul>
 </li>
 </ul><!--
@@ -305,6 +306,70 @@ window.onload = wrap_img;
 <ul>
 <li>we can add UNK token for unseen words in the vocab</li>
 <li>we can apply smoothing of interpolation for unseen Ngrams </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Week4:-Word-vectors-using-Bag-of-Words-method">
+<a class="anchor" href="#Week4:-Word-vectors-using-Bag-of-Words-method" aria-hidden="true"><span class="octicon octicon-link"></span></a>Week4: Word vectors using Bag of Words method<a class="anchor-link" href="#Week4:-Word-vectors-using-Bag-of-Words-method"> </a>
+</h2>
+<ul>
+<li>
+<p>we can use self-supervised learning in predicting the next word, to learn the weight matrix</p>
+</li>
+<li>
+<p>word2vec</p>
+<ul>
+<li>continuous bag-of-words <ul>
+<li>predicts a word in context</li>
+</ul>
+</li>
+<li>continuous skip-gram<ul>
+<li>tries to predict the words surrounding input word</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Global Vectors (GloVe)<ul>
+<li>factorizes the corpus word co-occurrence matrix</li>
+</ul>
+</li>
+<li>fastText<ul>
+<li>based on skip-gram model</li>
+<li>support out-of-vocab words </li>
+</ul>
+</li>
+<li>Advanced word embedding methods<ul>
+<li>Deep Learning, contextual embedding </li>
+<li>BERT</li>
+<li>ELMO </li>
+<li>GPT-2
+### Continuous Bag-of-Words Model</li>
+</ul>
+</li>
+<li>you choose a center word, and a context words around it, and try to predict the centered word</li>
+<li>we model the words by one-hot encoding </li>
+<li>then we prepare the input training example feature to be an average of the one-hot vectors of the context words, and the label would be one-hot vector of the center word</li>
+<li>after training the model, the word embedding is one of the weight matrices, or an average of them
+#### Evaluations</li>
+<li>Intrinsic evaluation<ul>
+<li>test the relationships between words</li>
+<li>Analogies</li>
+<li>Clustering</li>
+<li>Visualizing</li>
+</ul>
+</li>
+<li>Extrinsic evaluation <ul>
+<li>test the embedding on the end task you want to perform (ex. Sentiment Analysis)</li>
+<li>evaluates actual usefulness of embeddings</li>
+<li>time consuming</li>
+<li>more difficult to troubleshoot</li>
+</ul>
+</li>
 </ul>
 
 </div>

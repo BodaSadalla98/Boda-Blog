@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      14 min read
+      17 min read
     
 </span></p>
 
@@ -223,9 +223,21 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h4"><a href="#Dilated-Convolution:">Dilated Convolution: </a></li>
 </ul>
 </li>
+<li class="toc-entry toc-h3"><a href="#Image-Super-Resolution">Image Super-Resolution </a></li>
+<li class="toc-entry toc-h3"><a href="#Perceptual-Losses">Perceptual Losses </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h2"><a href="#Object-Detection">Object Detection </a></li>
+<li class="toc-entry toc-h2"><a href="#Object-Detection">Object Detection </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Two-Stage-Detectors">Two Stage Detectors </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#R-CNN">R-CNN </a></li>
+<li class="toc-entry toc-h4"><a href="#Spatial-Pyramid-Pooling">Spatial Pyramid Pooling </a></li>
+<li class="toc-entry toc-h4"><a href="#Fast-R-CNN">Fast R-CNN </a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul><!--
@@ -928,6 +940,24 @@ p,q are the image resolution </li>
 <li>basically atrous convolution</li>
 <li>increases the  size of the receptive points layer by layer</li>
 </ul>
+<h3 id="Image-Super-Resolution">
+<a class="anchor" href="#Image-Super-Resolution" aria-hidden="true"><span class="octicon octicon-link"></span></a>Image Super-Resolution<a class="anchor-link" href="#Image-Super-Resolution"> </a>
+</h3>
+<ul>
+<li>we want to develope a NN that can up-sample images</li>
+<li>we can do that using convolution </li>
+<li>and in the middle we use one to one convolution to work as non-leaner mapping</li>
+</ul>
+<h3 id="Perceptual-Losses">
+<a class="anchor" href="#Perceptual-Losses" aria-hidden="true"><span class="octicon octicon-link"></span></a>Perceptual Losses<a class="anchor-link" href="#Perceptual-Losses"> </a>
+</h3>
+<ul>
+<li>mse isn't the best for images, for example, if we shift an image by one pixel in any direction, we will end up with huge loss, while the two images are the same </li>
+<li>the idea it to use a CNN like VGG-16 to calculate the loss, this works because any CNN would have some perceptual understanding of the images</li>
+<li>so we push the output of our model, and the target (label) through a NN, and compare the feature maps on different layers
+#### Single Image Super-Resolution(SISR)</li>
+<li>the idea is to make the network to only learn the residual not the full image, so it just learns the difference between the two images </li>
+</ul>
 
 </div>
 </div>
@@ -938,6 +968,39 @@ p,q are the image resolution </li>
 <h2 id="Object-Detection">
 <a class="anchor" href="#Object-Detection" aria-hidden="true"><span class="octicon octicon-link"></span></a>Object Detection<a class="anchor-link" href="#Object-Detection"> </a>
 </h2>
+<h3 id="Two-Stage-Detectors">
+<a class="anchor" href="#Two-Stage-Detectors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Two Stage Detectors<a class="anchor-link" href="#Two-Stage-Detectors"> </a>
+</h3>
+<h4 id="R-CNN">
+<a class="anchor" href="#R-CNN" aria-hidden="true"><span class="octicon octicon-link"></span></a>R-CNN<a class="anchor-link" href="#R-CNN"> </a>
+</h4>
+<ul>
+<li>we enter the input image into extract regions algorithm. this algorithm is cheap algorithm that output millions of boxes per image. we do that using an algorithm called "selective search"</li>
+<li>we then enter that to a CNN to do features extractions</li>
+<li>at the end we have a per-class classifier </li>
+</ul>
+<h4 id="Spatial-Pyramid-Pooling">
+<a class="anchor" href="#Spatial-Pyramid-Pooling" aria-hidden="true"><span class="octicon octicon-link"></span></a>Spatial Pyramid Pooling<a class="anchor-link" href="#Spatial-Pyramid-Pooling"> </a>
+</h4>
+<ul>
+<li>the idea is that we use spatial pyramid pooling to have a fixed length representation for the image</li>
+<li>also we push the input image once through the conv layers, then choose multiple windows after to do the classification for. this way we cut so much on computations cause we for the first few conv layers, we pushed just one image</li>
+</ul>
+<h4 id="Fast-R-CNN">
+<a class="anchor" href="#Fast-R-CNN" aria-hidden="true"><span class="octicon octicon-link"></span></a>Fast R-CNN<a class="anchor-link" href="#Fast-R-CNN"> </a>
+</h4>
+<ul>
+<li>just like RCNN but, changed the multi-class SVM with multi-task loss, this way we don't have to calculate many classifiers, one for each class.</li>
+<li>also we don't need bounding box proposals, and we can acc train a Region Proposal Network, to propose bounding boxes for every pixel in the feature map.</li>
+<li>last trick is to use a CNN instead of the FC head at the end of the network, but CNN is translation invariant, so we need to do pooling for each region separately. 
+#### Feature Pyramids</li>
+<li>the idea is that we need to use different versions for our input image, each with different resolution, so that we detect objects with different sizes.</li>
+<li>to do that we can use the different features maps at different layers, so that at each layers the resolution changes, and we can use that to choose our windows</li>
+<li>the problem is that each layer represent a different semantic meaning of the image, so the first few layers consider the image colors, while the last few consider the more complex shapes of the image</li>
+<li>to overcome this, from each layer we add a connection to the layer below</li>
+<li>so we up sample the feature maps first then do one by one convolution to adjust the number of channels,</li>
+</ul>
+
 </div>
 </div>
 </div>

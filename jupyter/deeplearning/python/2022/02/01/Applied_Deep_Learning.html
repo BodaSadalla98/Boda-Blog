@@ -192,7 +192,7 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h4"><a href="#Mobile-Nets">Mobile Nets </a></li>
 <li class="toc-entry toc-h4"><a href="#Xception">Xception </a></li>
 <li class="toc-entry toc-h4"><a href="#Mobile-Net-V2">Mobile Net V2 </a></li>
-<li class="toc-entry toc-h4"><a href="#SuffleNet">SuffleNet </a></li>
+<li class="toc-entry toc-h4"><a href="#ShuffleNet">ShuffleNet </a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h3"><a href="#Auto-ML">Auto ML </a>
@@ -234,6 +234,12 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h4"><a href="#R-CNN">R-CNN </a></li>
 <li class="toc-entry toc-h4"><a href="#Spatial-Pyramid-Pooling">Spatial Pyramid Pooling </a></li>
 <li class="toc-entry toc-h4"><a href="#Fast-R-CNN">Fast R-CNN </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#One-Stage-Detectors">One Stage Detectors </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#YOLO">YOLO </a></li>
+<li class="toc-entry toc-h4"><a href="#SSD:-Single-Shot-MultiBox-Detector">SSD: Single Shot MultiBox Detector </a></li>
 </ul>
 </li>
 </ul>
@@ -738,7 +744,7 @@ p,q are the image resolution </li>
 <a class="anchor" href="#Mobile-Nets" aria-hidden="true"><span class="octicon octicon-link"></span></a>Mobile Nets<a class="anchor-link" href="#Mobile-Nets"> </a>
 </h4>
 <ul>
-<li>the idea is to reduce computation complexity by doing conv for each channel sperately, and not across channels.</li>
+<li>the idea is to reduce computation complexity by doing c   onv for each channel separately, and not across channels.</li>
 <li>so we use number of filters as the same as the input channels</li>
 <li>but then we will end up with  output size as the input size, so we still need to do one by one convolution to output the correct size</li>
 </ul>
@@ -746,19 +752,19 @@ p,q are the image resolution </li>
 <a class="anchor" href="#Xception" aria-hidden="true"><span class="octicon octicon-link"></span></a>Xception<a class="anchor-link" href="#Xception"> </a>
 </h4>
 <ul>
-<li>unify the filters sizes for the inception, and then apply them for each channel sperately, then do one by one convolution to fix the output size</li>
+<li>unify the filters sizes for the inception, and then apply them for each channel separately, then do one by one convolution to fix the output size</li>
 </ul>
 <h4 id="Mobile-Net-V2">
 <a class="anchor" href="#Mobile-Net-V2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Mobile Net V2<a class="anchor-link" href="#Mobile-Net-V2"> </a>
 </h4>
 <ul>
-<li>the same as MobileNet, but with Residuals connecions.</li>
+<li>the same as MobileNet, but with Residuals connections.</li>
 </ul>
-<h4 id="SuffleNet">
-<a class="anchor" href="#SuffleNet" aria-hidden="true"><span class="octicon octicon-link"></span></a>SuffleNet<a class="anchor-link" href="#SuffleNet"> </a>
+<h4 id="ShuffleNet">
+<a class="anchor" href="#ShuffleNet" aria-hidden="true"><span class="octicon octicon-link"></span></a>ShuffleNet<a class="anchor-link" href="#ShuffleNet"> </a>
 </h4>
 <ul>
-<li>the idea is to suffle channels after doing a group convultion </li>
+<li>the idea is to shuffle channels after doing a group convolution </li>
 </ul>
 
 </div>
@@ -1007,6 +1013,31 @@ p,q are the image resolution </li>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="One-Stage-Detectors">
+<a class="anchor" href="#One-Stage-Detectors" aria-hidden="true"><span class="octicon octicon-link"></span></a>One Stage Detectors<a class="anchor-link" href="#One-Stage-Detectors"> </a>
+</h3>
+<h4 id="YOLO">
+<a class="anchor" href="#YOLO" aria-hidden="true"><span class="octicon octicon-link"></span></a>YOLO<a class="anchor-link" href="#YOLO"> </a>
+</h4>
+<ul>
+<li>we want the detector to be realtime, so we can detect objects live</li>
+<li>divide the input image into  S * S grid</li>
+<li>if the center of an object fell inside a cell, that cell is the one responsible to detect that object </li>
+<li>each grid cell gonna predict, B bounding boxes, each with confidence score</li>
+</ul>
+<h4 id="SSD:-Single-Shot-MultiBox-Detector">
+<a class="anchor" href="#SSD:-Single-Shot-MultiBox-Detector" aria-hidden="true"><span class="octicon octicon-link"></span></a>SSD: Single Shot MultiBox Detector<a class="anchor-link" href="#SSD:-Single-Shot-MultiBox-Detector"> </a>
+</h4>
+<ul>
+<li>we want to take the speed from YOLO, and the high acc from the two-stage detectors</li>
+<li>unlike YOLO, we can use early layers, not just the last layers of the network, and for each one we can predict more boxes, so we end with much more boxes than YOLO
+#### YOLO9000 - YOLO V2</li>
+<li>Tries to improve upon YOLOv1 using idead from fast-CNN and SSD </li>
+<li>we can use higher res images in training</li>
+<li>can the anchor boxes from the training images not just randomly </li>
+<li>introduced passthrough layer</li>
+<li>used hierarchical classification to extend many classes </li>
+</ul>
 
 </div>
 </div>

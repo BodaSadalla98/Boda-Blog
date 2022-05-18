@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      7 min read
+      9 min read
     
 </span></p>
 
@@ -188,6 +188,13 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h3"><a href="#AI">AI </a></li>
 <li class="toc-entry toc-h3"><a href="#Representation-learning">Representation learning </a></li>
 <li class="toc-entry toc-h3"><a href="#CH2">CH2 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Deep-Generative-Modeling">Deep Generative Modeling </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Autoencoders:">Autoencoders: </a></li>
+<li class="toc-entry toc-h3"><a href="#Variational-Autoencoders-(VAE)">Variational Autoencoders (VAE) </a></li>
+<li class="toc-entry toc-h3"><a href="#Generative-Adversarial-Networks-(GANs)">Generative Adversarial Networks (GANs) </a></li>
 </ul>
 </li>
 </ul><!--
@@ -488,7 +495,61 @@ DDP registers autograd hooks during construction, one hook per parameter. These 
 <h3 id="CH2">
 <a class="anchor" href="#CH2" aria-hidden="true"><span class="octicon octicon-link"></span></a>CH2<a class="anchor-link" href="#CH2"> </a>
 </h3>
-<p>`</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Deep-Generative-Modeling">
+<a class="anchor" href="#Deep-Generative-Modeling" aria-hidden="true"><span class="octicon octicon-link"></span></a>Deep Generative Modeling<a class="anchor-link" href="#Deep-Generative-Modeling"> </a>
+</h2>
+<ul>
+<li>latent variable: it's a variable that is controlling some behaviors, but we can't directly observe it</li>
+<li>we are trying to observe <code>true explanatory factors</code>, for example, <code>latent variables</code>, from only observed data </li>
+</ul>
+<h3 id="Autoencoders:">
+<a class="anchor" href="#Autoencoders:" aria-hidden="true"><span class="octicon octicon-link"></span></a>Autoencoders:<a class="anchor-link" href="#Autoencoders:"> </a>
+</h3>
+<ul>
+<li>the encoder learns to map from data, to a low-dimensional latent space </li>
+<li>the decoder learns to map back from the low-dimensional space back into a reconstructed observation </li>
+<li>the bottleneck hidden layer forces the network to learn a compressed latent representation</li>
+<li>the reconstruction loss forces the latent representation to capture as much information from the data</li>
+</ul>
+<h3 id="Variational-Autoencoders-(VAE)">
+<a class="anchor" href="#Variational-Autoencoders-(VAE)" aria-hidden="true"><span class="octicon octicon-link"></span></a>Variational Autoencoders (VAE)<a class="anchor-link" href="#Variational-Autoencoders-(VAE)"> </a>
+</h3>
+<ul>
+<li>with classic autoencoders, once we train the network, then the latent representation is deterministic</li>
+<li>but in VAE, we add some randomness, so we can generate new samples </li>
+<li>so the encoder should output a mean and a standard deviation, which represents a distribution of the input, then we can sample from this distribution to generate new sample </li>
+<li>the encoder is trying to infer a probability distribution of the latent space with respect to its input data</li>
+<li>the decoder is trying to infer a new probability distribution over the input space given the latent space </li>
+<li>the loss is going to be function of the parameters of the two distributions </li>
+<li>the loss would consist of a construction loss and a regularization term, which is responsible for inducing some notion of structure of this probabilistic space </li>
+<li>We need regularization and a prior to:<ul>
+<li>continuity: points that are close in the latent space, should remain close after decoding</li>
+<li>completeness: samples from the latent space, should produce meaning content after decoding </li>
+</ul>
+</li>
+<li>we can't perform back propagation, as there's stochasticity in the latent space,</li>
+<li>
+<p>to solve this issue, we fix, the mean and variance, and introduce the stochastic term separate from them</p>
+</li>
+<li>
+<p>The key problem with VAEs, is a concern of density estimation</p>
+</li>
+</ul>
+<h3 id="Generative-Adversarial-Networks-(GANs)">
+<a class="anchor" href="#Generative-Adversarial-Networks-(GANs)" aria-hidden="true"><span class="octicon octicon-link"></span></a>Generative Adversarial Networks (GANs)<a class="anchor-link" href="#Generative-Adversarial-Networks-(GANs)"> </a>
+</h3>
+<ul>
+<li>we need to sample from a very complex distribution, that we don't know, and can't estimate</li>
+<li>the solution, is to sample from a simple distribution (eg. noise), then learn a transformation, to the data distribution  </li>
+<li>we have a Generator, that's tries to transform the data sampled from the random noise, into data that looks real, to trick the discriminator</li>
+<li>we have a discriminator, which tries to identify real data from fake. </li>
+</ul>
 
 </div>
 </div>

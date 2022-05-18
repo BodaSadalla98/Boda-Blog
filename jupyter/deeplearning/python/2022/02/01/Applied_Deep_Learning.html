@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      17 min read
+      19 min read
     
 </span></p>
 
@@ -242,6 +242,22 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h4"><a href="#SSD:-Single-Shot-MultiBox-Detector">SSD: Single Shot MultiBox Detector </a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Video">Video </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Large-scale-video-classification">Large-scale video classification </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#Early-Fusion">Early Fusion </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#Two-Stream-CNN-for-action-recognition">Two-Stream CNN for action recognition </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#Optical-flow-stacking">Optical flow stacking </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#Non-local-Neural-Network">Non-local Neural Network </a></li>
+<li class="toc-entry toc-h3"><a href="#Group-Normalization">Group Normalization </a></li>
 </ul>
 </li>
 </ul>
@@ -1038,6 +1054,64 @@ p,q are the image resolution </li>
 <li>introduced passthrough layer</li>
 <li>used hierarchical classification to extend many classes </li>
 </ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Video">
+<a class="anchor" href="#Video" aria-hidden="true"><span class="octicon octicon-link"></span></a>Video<a class="anchor-link" href="#Video"> </a>
+</h2>
+<h3 id="Large-scale-video-classification">
+<a class="anchor" href="#Large-scale-video-classification" aria-hidden="true"><span class="octicon octicon-link"></span></a>Large-scale video classification<a class="anchor-link" href="#Large-scale-video-classification"> </a>
+</h3>
+<ul>
+<li>we would have a context stream which learns features on a low res frames.</li>
+<li>and a Fovea Stream, which operates on a high res middle portion of the frames </li>
+</ul>
+<h4 id="Early-Fusion">
+<a class="anchor" href="#Early-Fusion" aria-hidden="true"><span class="octicon octicon-link"></span></a>Early Fusion<a class="anchor-link" href="#Early-Fusion"> </a>
+</h4>
+<ul>
+<li>the idea is to take a few frames from the middle of the clip, and apply conv on them, the only diff is that we add a new dimension to filters which coreespond to the number of frames </li>
+<li>that's just for the first layer, but then it's normal conv
+#### Late Fusion</li>
+<li>we have two separate single-frame networks, each one takes a diff frame from the clip, and we concatenate them in the end </li>
+</ul>
+<h3 id="Two-Stream-CNN-for-action-recognition">
+<a class="anchor" href="#Two-Stream-CNN-for-action-recognition" aria-hidden="true"><span class="octicon octicon-link"></span></a>Two-Stream CNN for action recognition<a class="anchor-link" href="#Two-Stream-CNN-for-action-recognition"> </a>
+</h3>
+<ul>
+<li>video can be decomposed into spatial and temporal components </li>
+</ul>
+<h4 id="Optical-flow-stacking">
+<a class="anchor" href="#Optical-flow-stacking" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optical flow stacking<a class="anchor-link" href="#Optical-flow-stacking"> </a>
+</h4>
+<ul>
+<li>we can just follow pixels from frame to another, and then create a flow vectors, in the x,y axis </li>
+<li>then we can stack these flow vectors 
+#### Trajectory stacking</li>
+<li>follow the point from frame to another </li>
+</ul>
+<h3 id="Non-local-Neural-Network">
+<a class="anchor" href="#Non-local-Neural-Network" aria-hidden="true"><span class="octicon octicon-link"></span></a>Non-local Neural Network<a class="anchor-link" href="#Non-local-Neural-Network"> </a>
+</h3>
+<ul>
+<li>the idea is that we want to see for output pixel, which areas did it pay attention to in the input</li>
+<li>so we attention every output with all possible pixels in the input</li>
+<li>if we are using it with videos, then we add another dimension for the time</li>
+</ul>
+<h3 id="Group-Normalization">
+<a class="anchor" href="#Group-Normalization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Group Normalization<a class="anchor-link" href="#Group-Normalization"> </a>
+</h3>
+<ul>
+<li>Batch norm, is good as long as we have reasonable batch size</li>
+<li>but whe we have very small batch size, then batch norm isn't the best </li>
+</ul>
+<p><strong>Here's diff between normalizaiton methods:</strong></p>
+<p><img src="/Boda-Blog/images/copied_from_nb/assets/nomalizations.png" alt=""></p>
 
 </div>
 </div>

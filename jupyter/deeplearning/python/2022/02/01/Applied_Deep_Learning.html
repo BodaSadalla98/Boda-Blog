@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      19 min read
+      20 min read
     
 </span></p>
 
@@ -258,6 +258,24 @@ window.onload = wrap_img;
 </li>
 <li class="toc-entry toc-h3"><a href="#Non-local-Neural-Network">Non-local Neural Network </a></li>
 <li class="toc-entry toc-h3"><a href="#Group-Normalization">Group Normalization </a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#Natural-Language-Processing">Natural Language Processing </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Word-Representation">Word Representation </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Distributed-Representation-of-Words-and-Phrases-and-their-Compositionality">Distributed Representation of Words and Phrases and their Compositionality </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#Skip-gram-Model">Skip-gram Model </a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#Evaluation">Evaluation </a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#Word2Vec-(-Efficient-Estimation-of-Word-Representation-in-Vector-Space-)">Word2Vec ( Efficient Estimation of Word Representation in Vector Space ) </a></li>
 </ul>
 </li>
 </ul>
@@ -1112,6 +1130,68 @@ p,q are the image resolution </li>
 </ul>
 <p><strong>Here's diff between normalizaiton methods:</strong></p>
 <p><img src="/Boda-Blog/images/copied_from_nb/assets/nomalizations.png" alt=""></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Natural-Language-Processing">
+<a class="anchor" href="#Natural-Language-Processing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Natural Language Processing<a class="anchor-link" href="#Natural-Language-Processing"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Word-Representation">
+<a class="anchor" href="#Word-Representation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Word Representation<a class="anchor-link" href="#Word-Representation"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Distributed-Representation-of-Words-and-Phrases-and-their-Compositionality">
+<a class="anchor" href="#Distributed-Representation-of-Words-and-Phrases-and-their-Compositionality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Distributed Representation of Words and Phrases and their Compositionality<a class="anchor-link" href="#Distributed-Representation-of-Words-and-Phrases-and-their-Compositionality"> </a>
+</h3>
+<h4 id="Skip-gram-Model">
+<a class="anchor" href="#Skip-gram-Model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Skip-gram Model<a class="anchor-link" href="#Skip-gram-Model"> </a>
+</h4>
+<ul>
+<li>
+<p>Continuous Bag of Words is the opposite of the skip-gram in the sense of what are we predicting (word vs context)</p>
+</li>
+<li>
+<p>the idea is that you pick a word, and try to predict the context around it</p>
+</li>
+<li>so you have a word in the middle and try to predict words around in (before, and after), given a defined window size</li>
+<li>and our objective is to maximize the liklihood of the context given the reference word </li>
+<li>we can use binary trees, to do an approximation, and speed up the softmax caculation, as for every word in the vocab, we would calculate it's softmax with all other words,but now we can use binary trees, and do that in just log(n), using an approximation, that we group words together, and in each level coming from the root, we go right or left, till we reach the word in the leaves </li>
+<li>
+<p>we can make this even faster, using huffman encoding to assign shorter paths for more frequent words</p>
+</li>
+<li>
+<p>noise sampling: the idea is to give the model negative samples, that doesn't appear together, and give it low probability</p>
+</li>
+</ul>
+<h5 id="Evaluation">
+<a class="anchor" href="#Evaluation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Evaluation<a class="anchor-link" href="#Evaluation"> </a>
+</h5>
+<ul>
+<li>we can evaluate the model, using syntactic, and semantic analogies </li>
+<li>for example, Berlin to Germany is like France to Paris</li>
+</ul>
+<h3 id="Word2Vec-(-Efficient-Estimation-of-Word-Representation-in-Vector-Space-)">
+<a class="anchor" href="#Word2Vec-(-Efficient-Estimation-of-Word-Representation-in-Vector-Space-)" aria-hidden="true"><span class="octicon octicon-link"></span></a>Word2Vec ( Efficient Estimation of Word Representation in Vector Space )<a class="anchor-link" href="#Word2Vec-(-Efficient-Estimation-of-Word-Representation-in-Vector-Space-)"> </a>
+</h3>
+<ul>
+<li>using CBOW model </li>
+<li>uses the cosine-similarity distance function </li>
+</ul>
 
 </div>
 </div>

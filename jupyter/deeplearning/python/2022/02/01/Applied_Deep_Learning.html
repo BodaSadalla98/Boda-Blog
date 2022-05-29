@@ -268,14 +268,18 @@ window.onload = wrap_img;
 <ul>
 <li class="toc-entry toc-h3"><a href="#Distributed-Representation-of-Words-and-Phrases-and-their-Compositionality">Distributed Representation of Words and Phrases and their Compositionality </a>
 <ul>
-<li class="toc-entry toc-h4"><a href="#Skip-gram-Model">Skip-gram Model </a>
+<li class="toc-entry toc-h4"><a href="#Word2Vec-(-Efficient-Estimation-of-Word-Representation-in-Vector-Space-)">Word2Vec ( Efficient Estimation of Word Representation in Vector Space ) </a>
 <ul>
-<li class="toc-entry toc-h5"><a href="#Evaluation">Evaluation </a></li>
+<li class="toc-entry toc-h5"><a href="#Skip-gram-Model">Skip-gram Model </a>
+<ul>
+<li class="toc-entry toc-h6"><a href="#Evaluation">Evaluation </a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-entry toc-h3"><a href="#Word2Vec-(-Efficient-Estimation-of-Word-Representation-in-Vector-Space-)">Word2Vec ( Efficient Estimation of Word Representation in Vector Space ) </a></li>
+<li class="toc-entry toc-h4"><a href="#GloVe:-Global-Vectors-for-Word-Representation">GloVe: Global Vectors for Word Representation </a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1158,9 +1162,16 @@ p,q are the image resolution </li>
 <h3 id="Distributed-Representation-of-Words-and-Phrases-and-their-Compositionality">
 <a class="anchor" href="#Distributed-Representation-of-Words-and-Phrases-and-their-Compositionality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Distributed Representation of Words and Phrases and their Compositionality<a class="anchor-link" href="#Distributed-Representation-of-Words-and-Phrases-and-their-Compositionality"> </a>
 </h3>
-<h4 id="Skip-gram-Model">
-<a class="anchor" href="#Skip-gram-Model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Skip-gram Model<a class="anchor-link" href="#Skip-gram-Model"> </a>
+<h4 id="Word2Vec-(-Efficient-Estimation-of-Word-Representation-in-Vector-Space-)">
+<a class="anchor" href="#Word2Vec-(-Efficient-Estimation-of-Word-Representation-in-Vector-Space-)" aria-hidden="true"><span class="octicon octicon-link"></span></a>Word2Vec ( Efficient Estimation of Word Representation in Vector Space )<a class="anchor-link" href="#Word2Vec-(-Efficient-Estimation-of-Word-Representation-in-Vector-Space-)"> </a>
 </h4>
+<ul>
+<li>using CBOW model, or skip-gram model</li>
+<li>uses the cosine-similarity distance function </li>
+</ul>
+<h5 id="Skip-gram-Model">
+<a class="anchor" href="#Skip-gram-Model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Skip-gram Model<a class="anchor-link" href="#Skip-gram-Model"> </a>
+</h5>
 <ul>
 <li>
 <p>Continuous Bag of Words is the opposite of the skip-gram in the sense of what are we predicting (word vs context)</p>
@@ -1178,19 +1189,23 @@ p,q are the image resolution </li>
 <p>noise sampling: the idea is to give the model negative samples, that doesn't appear together, and give it low probability</p>
 </li>
 </ul>
-<h5 id="Evaluation">
+<h6 id="Evaluation">
 <a class="anchor" href="#Evaluation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Evaluation<a class="anchor-link" href="#Evaluation"> </a>
-</h5>
+</h6>
 <ul>
 <li>we can evaluate the model, using syntactic, and semantic analogies </li>
 <li>for example, Berlin to Germany is like France to Paris</li>
 </ul>
-<h3 id="Word2Vec-(-Efficient-Estimation-of-Word-Representation-in-Vector-Space-)">
-<a class="anchor" href="#Word2Vec-(-Efficient-Estimation-of-Word-Representation-in-Vector-Space-)" aria-hidden="true"><span class="octicon octicon-link"></span></a>Word2Vec ( Efficient Estimation of Word Representation in Vector Space )<a class="anchor-link" href="#Word2Vec-(-Efficient-Estimation-of-Word-Representation-in-Vector-Space-)"> </a>
-</h3>
+<h4 id="GloVe:-Global-Vectors-for-Word-Representation">
+<a class="anchor" href="#GloVe:-Global-Vectors-for-Word-Representation" aria-hidden="true"><span class="octicon octicon-link"></span></a>GloVe: Global Vectors for Word Representation<a class="anchor-link" href="#GloVe:-Global-Vectors-for-Word-Representation"> </a>
+</h4>
 <ul>
-<li>using CBOW model </li>
-<li>uses the cosine-similarity distance function </li>
+<li>the idea is to use:<ul>
+<li>global matrix factorization methods</li>
+<li>local context window methods </li>
+</ul>
+</li>
+<li>we compute a co-occurrence method, that holds the counts every two words come after each other, we try to learn two matrieces and two biases, that log(X) = w1 * w2 + b1 + b2 </li>
 </ul>
 
 </div>

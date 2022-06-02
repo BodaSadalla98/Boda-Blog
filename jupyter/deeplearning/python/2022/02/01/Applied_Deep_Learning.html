@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      20 min read
+      27 min read
     
 </span></p>
 
@@ -138,6 +138,7 @@ window.onload = wrap_img;
 
   <div class="post-content e-content" itemprop="articleBody">
     <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#Reference">Reference </a></li>
 <li class="toc-entry toc-h2"><a href="#Deep-Learning-overview">Deep Learning overview </a></li>
 <li class="toc-entry toc-h2"><a href="#Dropout">Dropout </a></li>
 <li class="toc-entry toc-h1"><a href="#Computer-Vision">Computer Vision </a>
@@ -282,6 +283,46 @@ window.onload = wrap_img;
 </li>
 </ul>
 </li>
+<li class="toc-entry toc-h2"><a href="#Text-Classification">Text Classification </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Recursive-deep-models-for-semantic-compositionality-over-sentiment-Treebank">Recursive deep models for semantic compositionality over sentiment Treebank </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Doc2Vec">Doc2Vec </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Paragraph-vector">Paragraph vector </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#FastText">FastText </a></li>
+<li class="toc-entry toc-h2"><a href="#Hierarchial-Attention-Networks-for-Document-Classification">Hierarchial Attention Networks for Document Classification </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#GRU">GRU </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Neural-Architecture-for-Named-Entity-Recognition">Neural Architecture for Named Entity Recognition </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#LSTM-CRF-Model">LSTM-CRF Model </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#Normal-LSTM">Normal LSTM </a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Universal-Language-Model-fine-tuning-for-Text-Classification-(ULMFiT)">Universal Language Model fine-tuning for Text Classification (ULMFiT) </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#slanted-triangular-learning-rate">slanted triangular learning rate </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Natural-Machine-Translation-bu-Jointly-Learning-to-Align-and-Translate">Natural Machine Translation bu Jointly Learning to Align and Translate </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#RNN-Encoder-Decoder">RNN Encoder-Decoder </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#Encoder">Encoder </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#BLUE-Score-(-Bilingual-Evaluation-Understudy-)">BLUE Score ( Bilingual Evaluation Understudy ) </a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul><!--
@@ -293,6 +334,17 @@ window.onload = wrap_img;
 
 <div class="container" id="notebook-container">
         
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Reference">
+<a class="anchor" href="#Reference" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reference<a class="anchor-link" href="#Reference"> </a>
+</h2>
+<p><a href="https://github.com/maziarraissi/Applied-Deep-Learning">Repo with the slides, and course info</a></p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -909,15 +961,15 @@ p,q are the image resolution </li>
 #### LIME: Local Interpretable Model-agnsortic Explanations</li>
 </ul>
 </li>
-<li>you want to make trust the model, meaning that you wanna maek sure the model parioritized the important features</li>
-<li>but you can't interprete non linear models, so the idea is to make a locally linear model, that have the same output for your local input example, then use this linear model to get the features that the model parioritrized </li>
+<li>you want to trust the model, meaning that you wanna make sure the model prioritized the important features</li>
+<li>but you can't interpret non linear models, so the idea is to make a locally linear model, that have the same output for your local input example, then use this linear model to get the features that the model prioritized </li>
 </ul>
 <h4 id="Understanding-Deep-Learning-Requires-Rethinking-Generalization">
 <a class="anchor" href="#Understanding-Deep-Learning-Requires-Rethinking-Generalization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Understanding Deep Learning Requires Rethinking Generalization<a class="anchor-link" href="#Understanding-Deep-Learning-Requires-Rethinking-Generalization"> </a>
 </h4>
 <ul>
 <li>NN are powerful enough to fit random data, but then it will not generalize for test data </li>
-<li>so when we indroduce radom labels, random pixels, etc: we still can go for 0 train loss, but for test data, the error is gonna be equal to random selection.</li>
+<li>so when we introduce radom labels, random pixels, etc: we still can go for 0 train loss, but for test data, the error is gonna be equal to random selection.</li>
 <li>
 <p>so, this means: The model architecture itself isn't a sufficient regularizer.</p>
 </li>
@@ -1206,6 +1258,210 @@ p,q are the image resolution </li>
 </ul>
 </li>
 <li>we compute a co-occurrence method, that holds the counts every two words come after each other, we try to learn two matrieces and two biases, that log(X) = w1 * w2 + b1 + b2 </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Text-Classification">
+<a class="anchor" href="#Text-Classification" aria-hidden="true"><span class="octicon octicon-link"></span></a>Text Classification<a class="anchor-link" href="#Text-Classification"> </a>
+</h2>
+<h3 id="Recursive-deep-models-for-semantic-compositionality-over-sentiment-Treebank">
+<a class="anchor" href="#Recursive-deep-models-for-semantic-compositionality-over-sentiment-Treebank" aria-hidden="true"><span class="octicon octicon-link"></span></a>Recursive deep models for semantic compositionality over sentiment Treebank<a class="anchor-link" href="#Recursive-deep-models-for-semantic-compositionality-over-sentiment-Treebank"> </a>
+</h3>
+<ul>
+<li>the dataset is presented as a tree with leafs as words</li>
+<li>the idea is that for evert word we get it's embedding, then we multiply that by a weight matrix, and apply softmax, so then we have probability distribution over our classes (sentiment classes)</li>
+<li>then we can concatenate every words together, and keep recursing till we finish the whole sentence </li>
+<li>the problem with this model, is that we are losing the pair wise interaction between the two words,</li>
+<li>wat we can do it introduce a tensor V, that would capture this interaction<br>
+### CNN for Text Classification </li>
+<li>we want to use CNNs with text, so we would have some filters</li>
+<li>the idea is to treat sentences as one dimensional vector, and then we can apply windows that contain bunch of words to some filters, and aggregate them </li>
+</ul>
+<h2 id="Doc2Vec">
+<a class="anchor" href="#Doc2Vec" aria-hidden="true"><span class="octicon octicon-link"></span></a>Doc2Vec<a class="anchor-link" href="#Doc2Vec"> </a>
+</h2>
+<ul>
+<li>as we have representation of words, we can also have the same for sentences, or documents
+### Bag of words</li>
+<li>for each sentence, count the frequency of each word in your vocab
+#### weakness</li>
+<li>lose ordering or words</li>
+<li>lose semantics or words <ul>
+<li>"powerful" should be closer to "strong" than "Paris" </li>
+</ul>
+</li>
+</ul>
+<h3 id="Paragraph-vector">
+<a class="anchor" href="#Paragraph-vector" aria-hidden="true"><span class="octicon octicon-link"></span></a>Paragraph vector<a class="anchor-link" href="#Paragraph-vector"> </a>
+</h3>
+<ul>
+<li>for every paragraph, we would have a vector representing it, then we can average those together, and try to get the target paragraph</li>
+<li>we can do it as CBOW, and instead of words, we would have paragraphs </li>
+</ul>
+<h2 id="FastText">
+<a class="anchor" href="#FastText" aria-hidden="true"><span class="octicon octicon-link"></span></a>FastText<a class="anchor-link" href="#FastText"> </a>
+</h2>
+<ul>
+<li>the idea is that we take a sentence(a bag) of words, or N-grams and then sum their vectors together, then project them to latent space, and then project them again to output space, and apply non-linearity (softmax for example), then apply cross-entropy as a loss function </li>
+<li>we can also normalize our bag of features (the word representation), so we down weight most frequent words </li>
+<li>instead of softmax, we can use hierarchial softmax, to decrease the training time</li>
+<li>this model is super fast, and gives results similar to non-linear complicated models like CNNs</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Hierarchial-Attention-Networks-for-Document-Classification">
+<a class="anchor" href="#Hierarchial-Attention-Networks-for-Document-Classification" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hierarchial Attention Networks for Document Classification<a class="anchor-link" href="#Hierarchial-Attention-Networks-for-Document-Classification"> </a>
+</h2>
+<ul>
+<li>the idea is that we want to do document classification</li>
+<li>so in the end we want to represent the document by a vector, that we can enter to softmax, and then output a class </li>
+<li>we can use think of document as they are formed of sentences, and sentences are formed of words </li>
+<li>so we can use GRU based sequence encoder to represent words and then sentences </li>
+</ul>
+<h3 id="GRU">
+<a class="anchor" href="#GRU" aria-hidden="true"><span class="octicon octicon-link"></span></a>GRU<a class="anchor-link" href="#GRU"> </a>
+</h3>
+<ul>
+<li>we have a reset gate, and update gate</li>
+<li>the idea is that at every step we have a previous hidden output, and a current input</li>
+<li>then we have an update gate that determines  the percentage to take from the current hidden output, vs the previous hidden output.</li>
+<li>then we also have a reset gate, which determines how much we wanna take from the previous state when calculating the current state </li>
+<li>we use the tanh function to calculate the hidden state</li>
+<li>
+<p>we use the sigmoid to calc the parameter Z, which tell us the percentage between the current state, and the previous state output</p>
+</li>
+<li>
+<p>we can have a forward, and a backward GRU, and concat them</p>
+</li>
+<li>then we project these concat words representation, and apply non-linearity </li>
+<li>then to calculate the sentence vector out of these word vectors, we apply a weighted average on them.</li>
+<li>this works like a simplified version of attention </li>
+<li>we can do this weighted average using softmax, but first we need to turn this vector to a scaler, which we can do by  applying dot product with "query" or "word context", like we are doing a query: what is the informative word </li>
+<li>
+<p>this will get us with the alphas, which tell us how much we take from each word vector</p>
+</li>
+<li>
+<p>NOTE: cross-entropy with one-hot vector is the same as the log-liklihood</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Neural-Architecture-for-Named-Entity-Recognition">
+<a class="anchor" href="#Neural-Architecture-for-Named-Entity-Recognition" aria-hidden="true"><span class="octicon octicon-link"></span></a>Neural Architecture for Named Entity Recognition<a class="anchor-link" href="#Neural-Architecture-for-Named-Entity-Recognition"> </a>
+</h2>
+<h3 id="LSTM-CRF-Model">
+<a class="anchor" href="#LSTM-CRF-Model" aria-hidden="true"><span class="octicon octicon-link"></span></a>LSTM-CRF Model<a class="anchor-link" href="#LSTM-CRF-Model"> </a>
+</h3>
+<h4 id="Normal-LSTM">
+<a class="anchor" href="#Normal-LSTM" aria-hidden="true"><span class="octicon octicon-link"></span></a>Normal LSTM<a class="anchor-link" href="#Normal-LSTM"> </a>
+</h4>
+<ul>
+<li>has 3 gates, input gage, forget gate, output gate.
+#### Conditional Random Field </li>
+<li>in NER, the named tags are dependant on each other, for example: <code>B</code> tag, and <code>I</code> tag.</li>
+<li>so we want to account for that in our loss</li>
+<li>to do that we introduce a new compatibility matrix, to count for this dependency 
+#### Character-based models of words</li>
+<li>we need it cause, in production, we might encounter new unseen words, so we make up for that using the character encoding </li>
+<li>we want to add character representation with our words representation</li>
+<li>so we do a character-based bi-LSTM</li>
+<li>and we concatenate the output of the LSTM, with our word representation from the lookup table </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Universal-Language-Model-fine-tuning-for-Text-Classification-(ULMFiT)">
+<a class="anchor" href="#Universal-Language-Model-fine-tuning-for-Text-Classification-(ULMFiT)" aria-hidden="true"><span class="octicon octicon-link"></span></a>Universal Language Model fine-tuning for Text Classification (ULMFiT)<a class="anchor-link" href="#Universal-Language-Model-fine-tuning-for-Text-Classification-(ULMFiT)"> </a>
+</h2>
+<ul>
+<li>Language Model: a model that trying to give an understanding for language. Like given few words of the sentence, can we guess the next word. 
+### Disctimonative fine-tuning </li>
+<li>so the idea is to split the model pre-trained parameters for each layer</li>
+<li>and to also choose a learning rate for each layer</li>
+<li>the early layers would have smaller learning rate, so their weight wouldn't update as much</li>
+</ul>
+<h3 id="slanted-triangular-learning-rate">
+<a class="anchor" href="#slanted-triangular-learning-rate" aria-hidden="true"><span class="octicon octicon-link"></span></a>slanted triangular learning rate<a class="anchor-link" href="#slanted-triangular-learning-rate"> </a>
+</h3>
+<ul>
+<li>the idea is just to increase the LR gradually, till some point, then decrease in again</li>
+<li>and we do the increase and decrease linearly, so we end up with the triangular shape 
+### gradual unfreezing </li>
+<li>gradually unfreezing parameters through time </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Natural-Machine-Translation-bu-Jointly-Learning-to-Align-and-Translate">
+<a class="anchor" href="#Natural-Machine-Translation-bu-Jointly-Learning-to-Align-and-Translate" aria-hidden="true"><span class="octicon octicon-link"></span></a>Natural Machine Translation bu Jointly Learning to Align and Translate<a class="anchor-link" href="#Natural-Machine-Translation-bu-Jointly-Learning-to-Align-and-Translate"> </a>
+</h2>
+<ul>
+<li>we wanna model the conditional probability $ p(y|x)$. where x is the source sentence, and y is the target sentence </li>
+</ul>
+<h3 id="RNN-Encoder-Decoder">
+<a class="anchor" href="#RNN-Encoder-Decoder" aria-hidden="true"><span class="octicon octicon-link"></span></a>RNN Encoder-Decoder<a class="anchor-link" href="#RNN-Encoder-Decoder"> </a>
+</h3>
+<h4 id="Encoder">
+<a class="anchor" href="#Encoder" aria-hidden="true"><span class="octicon octicon-link"></span></a>Encoder<a class="anchor-link" href="#Encoder"> </a>
+</h4>
+<ul>
+<li>the encoder gonna encode our entire sentence into a single vector c </li>
+<li>we can use LSTM, which will output a sequence of vectors $ h_1, h_2, \dots ,h_T$. we can choose c to be just the last vector of the LSTM $h_T$
+### Decoder</li>
+<li>we can model $p(y|x)$, as that product of $y_i$ for i from 0 to input time T.</li>
+<li>but we can do an approximation, that instead of X, we calc using C which is a representation of X.</li>
+<li>and instead of using the previous Y outputs in previous time steps, we can use the previous hidden state</li>
+</ul>
+<p><img src="/Boda-Blog/images/copied_from_nb/assets/rnn_encoder_decoder.png" alt=""></p>
+<h3 id="BLUE-Score-(-Bilingual-Evaluation-Understudy-)">
+<a class="anchor" href="#BLUE-Score-(-Bilingual-Evaluation-Understudy-)" aria-hidden="true"><span class="octicon octicon-link"></span></a>BLUE Score ( Bilingual Evaluation Understudy )<a class="anchor-link" href="#BLUE-Score-(-Bilingual-Evaluation-Understudy-)"> </a>
+</h3>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=DejHQYAGb7Q">Good reference</a></li>
+<li>provides an automatic score for machine translation </li>
+<li>the normal precision gives terrible results</li>
+<li>they introduced a modified precision score, which gives score to words up to the maximum number of occurrences in the reference sentences </li>
+<li>we need also to account for different grams.</li>
+<li>for example, for bi-grams, we would count the bi-grams in the output, and count-clip them at the maximum of the bi-gram in the reference sentences</li>
+<li>Pn = BLUE score on n-grams only </li>
+<li>Combined Blue score:   Bp exp(1/n * sigma(Pn)) <ul>
+<li>Bp: brevity Penalty</li>
+<li>it basically penalize short translations </li>
+<li>Bp: is one  if output  is longer than reference </li>
+<li>otherwise, it's exp(1 -  (output length / reference length))
+## Sequence to Sequence Learning with Neural Networks</li>
+</ul>
+</li>
+<li>One limitation of RNNs is that the output sequence, is the same length as the input sequence  </li>
+<li>this is using two different LSTMs  one for input, and one for output </li>
+<li>it stacks multiple LSTMs together creating deep LSTM</li>
+<li>reversing the order of the words of the input sentence <ul>
+<li>the intuition is that the first of the output is gonna take most info from the first tokens of the input </li>
+</ul>
+</li>
 </ul>
 
 </div>

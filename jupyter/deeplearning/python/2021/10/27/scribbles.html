@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      10 min read
+      11 min read
     
 </span></p>
 
@@ -196,6 +196,7 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h3"><a href="#Variational-Autoencoders-(VAE)">Variational Autoencoders (VAE) </a></li>
 <li class="toc-entry toc-h3"><a href="#Generative-Adversarial-Networks-(GANs)">Generative Adversarial Networks (GANs) </a></li>
 <li class="toc-entry toc-h3"><a href="#SubWords">SubWords </a></li>
+<li class="toc-entry toc-h3"><a href="#Why-good-deep-in-Deep-Learning">Why good deep in Deep Learning </a></li>
 </ul>
 </li>
 </ul><!--
@@ -587,6 +588,22 @@ DDP registers autograd hooks during construction, one hook per parameter. These 
 </li>
 <li>so we choose features, that would increase purity the most after splitting the dataset using it </li>
 <li>to calculate after entropy or purity of a set after seperation, would be the weighted average of the subsets </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Why-good-deep-in-Deep-Learning">
+<a class="anchor" href="#Why-good-deep-in-Deep-Learning" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why good deep in Deep Learning<a class="anchor-link" href="#Why-good-deep-in-Deep-Learning"> </a>
+</h3>
+<ul>
+<li>one motivation, is that going deep can reduce the size of our units exponentially</li>
+<li>in our underlying function, there could be some symmetry, that we can fold the function across its axis</li>
+<li>for statistical reasons, we would want to infer out initial beliefs, about our function, that is involve the composition of several simpler functions</li>
+<li>Empirical experiments show that deeper networks generalize better </li>
 </ul>
 
 </div>

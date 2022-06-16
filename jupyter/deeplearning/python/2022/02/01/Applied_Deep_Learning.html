@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      27 min read
+      28 min read
     
 </span></p>
 
@@ -324,6 +324,11 @@ window.onload = wrap_img;
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#Phrase-representation">Phrase representation </a></li>
+<li class="toc-entry toc-h2"><a href="#Attention-based-Neural-Machine-Translation">Attention-based Neural Machine Translation </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Local-Attention">Local Attention </a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul><!--
@@ -1477,6 +1482,35 @@ p,q are the image resolution </li>
 <ul>
 <li>they combined DL approaches like RNNs, with statistical ML approached to enhance the translation</li>
 <li>we cen learn word embedding from the translation task</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Attention-based-Neural-Machine-Translation">
+<a class="anchor" href="#Attention-based-Neural-Machine-Translation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Attention-based Neural Machine Translation<a class="anchor-link" href="#Attention-based-Neural-Machine-Translation"> </a>
+</h2>
+<ul>
+<li>attention solves the problem of decreasing Blue-score with increasing the sentence length 
+### Global Attention </li>
+<li>with previous approaches, we used a small version of attention, to choose which source vector would have the bigger weight</li>
+<li>in this version we do the same, but with different, source-target hidden state vectors</li>
+<li>so we attend source and target hidden state vectors <center> <img src="assets/global-attention-model.png">
+</center>
+</li>
+</ul>
+<h3 id="Local-Attention">
+<a class="anchor" href="#Local-Attention" aria-hidden="true"><span class="octicon octicon-link"></span></a>Local Attention<a class="anchor-link" href="#Local-Attention"> </a>
+</h3>
+<ul>
+<li>instead of attending to all of the input space, we can jus attend to a portion of it </li>
+<li>it's faster than global attention</li>
+<li>how to choose the portion to attend to, is learnable <center> <img src="assets/local-attention.png">
+</center>
+</li>
 </ul>
 
 </div>

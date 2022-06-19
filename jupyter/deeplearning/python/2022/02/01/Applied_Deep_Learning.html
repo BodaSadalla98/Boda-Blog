@@ -329,6 +329,7 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h3"><a href="#Local-Attention">Local Attention </a></li>
 </ul>
 </li>
+<li class="toc-entry toc-h2"><a href="#Byte-Pair-Encoding">Byte Pair Encoding </a></li>
 </ul>
 </li>
 </ul><!--
@@ -1511,6 +1512,24 @@ p,q are the image resolution </li>
 <li>how to choose the portion to attend to, is learnable <center> <img src="assets/local-attention.png">
 </center>
 </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Byte-Pair-Encoding">
+<a class="anchor" href="#Byte-Pair-Encoding" aria-hidden="true"><span class="octicon octicon-link"></span></a>Byte Pair Encoding<a class="anchor-link" href="#Byte-Pair-Encoding"> </a>
+</h2>
+<ul>
+<li>the main objective is to reduce the amount of unknown words</li>
+<li>the idea is to iterate over the bytes in the sequence and pick the most frequent one and replace it with an unused byte</li>
+<li>a byte is a character, or a sequence of characters </li>
+<li>we keep doing that till we convert our input sequence to bunch of bytes</li>
+<li>at test time, we would have Out Of Vocab words, but we can convert them to known bytes that we extracted in training. </li>
+<li>we are trying to find a balance between word-encoding and character-encoding </li>
 </ul>
 
 </div>

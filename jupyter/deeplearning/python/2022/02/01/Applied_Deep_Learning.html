@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      28 min read
+      31 min read
     
 </span></p>
 
@@ -330,6 +330,14 @@ window.onload = wrap_img;
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#Byte-Pair-Encoding">Byte Pair Encoding </a></li>
+<li class="toc-entry toc-h2"><a href="#Google's-Neural-Machine-Translation">Google&#39;s Neural Machine Translation </a></li>
+<li class="toc-entry toc-h2"><a href="#Convolution-Sequence-to-Sequence-Learning">Convolution Sequence to Sequence Learning </a></li>
+<li class="toc-entry toc-h2"><a href="#Attention-Is-All-You-Need">Attention Is All You Need </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#One-Head-Attention">One Head Attention </a></li>
+<li class="toc-entry toc-h3"><a href="#Decoder">Decoder </a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul><!--
@@ -1530,6 +1538,94 @@ p,q are the image resolution </li>
 <li>we keep doing that till we convert our input sequence to bunch of bytes</li>
 <li>at test time, we would have Out Of Vocab words, but we can convert them to known bytes that we extracted in training. </li>
 <li>we are trying to find a balance between word-encoding and character-encoding </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Google's-Neural-Machine-Translation">
+<a class="anchor" href="#Google's-Neural-Machine-Translation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Google's Neural Machine Translation<a class="anchor-link" href="#Google's-Neural-Machine-Translation"> </a>
+</h2>
+<ul>
+<li>the first paper to beat statistics MT methods </li>
+<li>we will use encoder RNN to encode the input</li>
+<li>then we will use attention, to attend to the input</li>
+<li>they added 8-layer LSTM with residual connection </li>
+<li>they used (Byte-Pair) word-pieces technique</li>
+<li>the loss function, is the log likelihood of the output, conditioned on the input, but we wanna to add the GLeu score to penalize depending on the quality of the translation, so we can add the Gleu score to the loss function as a reward, in RL</li>
+<li>the did beam-search which penalized small sentences, and added penalty for long sequence contexts </li>
+<li>lastly, they quantize the model, and its parameters in inference  </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Convolution-Sequence-to-Sequence-Learning">
+<a class="anchor" href="#Convolution-Sequence-to-Sequence-Learning" aria-hidden="true"><span class="octicon octicon-link"></span></a>Convolution Sequence to Sequence Learning<a class="anchor-link" href="#Convolution-Sequence-to-Sequence-Learning"> </a>
+</h2>
+<ul>
+<li>we want to use the parallelization of the CNNs to learn seq-to-seq </li>
+<li>we add positional embedding to account for the different sentence positions. we didn't need to do this for RNNs as they process words sequentially by default </li>
+<li>The network has and encoder, and a decoder<ul>
+<li>the encoder, process all input </li>
+<li>the decoder, only considers the previous inputs</li>
+</ul>
+</li>
+<li>we have a stack of conv blocks</li>
+<li>for each convolution block, you take a k words, each is d dimensional, then you flatten them to be (kd) dimensional, and apply convolution, which is multiplying by filter of size (2d,kd), then you have an output of (2d) dimension. you talk the first half and dot product it with the sigmoid of the second half. there we applied the non-linearity.</li>
+<li>and for each block, we also add residual connection.</li>
+<li>lastly, we add attention between our encoder blocks output, and the decoder blocks output</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Attention-Is-All-You-Need">
+<a class="anchor" href="#Attention-Is-All-You-Need" aria-hidden="true"><span class="octicon octicon-link"></span></a>Attention Is All You Need<a class="anchor-link" href="#Attention-Is-All-You-Need"> </a>
+</h2>
+<ul>
+<li>in RNNs and CNNs, there's this inductive bias, that the useful information, is right next to us. while, is Attention we don't assume that </li>
+<li>Just as all attention based models, we need to add positional encoding<ul>
+<li>they do that by fourier expansion </li>
+</ul>
+</li>
+<li>all previous work was cross attention between encoder, and decoder</li>
+<li>here they introduced, self-attention, where the encoder attend to its inputs </li>
+<li>Then the added residual connection and layer normalization</li>
+</ul>
+<h3 id="One-Head-Attention">
+<a class="anchor" href="#One-Head-Attention" aria-hidden="true"><span class="octicon octicon-link"></span></a>One Head Attention<a class="anchor-link" href="#One-Head-Attention"> </a>
+</h3>
+<ul>
+<li>we have Query, Key, and Value.<ul>
+<li>we multiply each of them with a weight matrix to add learnable parameters</li>
+</ul>
+</li>
+<li>first, we do attention between, the query and the key, they we down-scale the dot product by the square root of the embedding dimension.<ul>
+<li>we choose the square root, because it's not big nor small number, so we keep the attention weights in a reasonable range</li>
+</ul>
+</li>
+<li>then we do a weighted sum between the attention weights and the Value matrix 
+### Multi Head Attention</li>
+<li>then one the most important ideas here is multi-head attention</li>
+<li>we make many single head attention, then concatenate them together</li>
+</ul>
+<h3 id="Decoder">
+<a class="anchor" href="#Decoder" aria-hidden="true"><span class="octicon octicon-link"></span></a>Decoder<a class="anchor-link" href="#Decoder"> </a>
+</h3>
+<ul>
+<li>the same as the encoder</li>
+<li>the main difference, is that we do masked attention, which only attend to previous outputs only </li>
+<li>Here, the query is coming from the output sequence, and the key, and value, are coming from the encoder </li>
 </ul>
 
 </div>

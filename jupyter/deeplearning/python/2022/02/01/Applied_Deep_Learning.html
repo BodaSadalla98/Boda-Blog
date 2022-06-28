@@ -338,6 +338,7 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h3"><a href="#Decoder">Decoder </a></li>
 </ul>
 </li>
+<li class="toc-entry toc-h2"><a href="#Subword-Regularization">Subword Regularization </a></li>
 </ul>
 </li>
 </ul><!--
@@ -1626,6 +1627,20 @@ p,q are the image resolution </li>
 <li>the same as the encoder</li>
 <li>the main difference, is that we do masked attention, which only attend to previous outputs only </li>
 <li>Here, the query is coming from the output sequence, and the key, and value, are coming from the encoder </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Subword-Regularization">
+<a class="anchor" href="#Subword-Regularization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Subword Regularization<a class="anchor-link" href="#Subword-Regularization"> </a>
+</h2>
+<ul>
+<li>we want to have my many Subword tokenization for the same word</li>
+<li>the multiple subword tokenization works like kind of data augmentation, and also adds a regularization effect </li>
 </ul>
 
 </div>

@@ -195,8 +195,14 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h3"><a href="#Autoencoders:">Autoencoders: </a></li>
 <li class="toc-entry toc-h3"><a href="#Variational-Autoencoders-(VAE)">Variational Autoencoders (VAE) </a></li>
 <li class="toc-entry toc-h3"><a href="#Generative-Adversarial-Networks-(GANs)">Generative Adversarial Networks (GANs) </a></li>
-<li class="toc-entry toc-h3"><a href="#SubWords">SubWords </a></li>
-<li class="toc-entry toc-h3"><a href="#Why-good-deep-in-Deep-Learning">Why good deep in Deep Learning </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#SubWords">SubWords </a></li>
+<li class="toc-entry toc-h2"><a href="#Why-going-deep-in-Deep-Learning">Why going deep in Deep Learning </a></li>
+<li class="toc-entry toc-h2"><a href="#Few-shot-Learning">Few-shot Learning </a></li>
+<li class="toc-entry toc-h2"><a href="#GLIDE:">GLIDE: </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Diffusion-Models">Diffusion Models </a></li>
 </ul>
 </li>
 </ul><!--
@@ -559,16 +565,16 @@ DDP registers autograd hooks during construction, one hook per parameter. These 
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="SubWords">
+<h2 id="SubWords">
 <a class="anchor" href="#SubWords" aria-hidden="true"><span class="octicon octicon-link"></span></a>SubWords<a class="anchor-link" href="#SubWords"> </a>
-</h3>
+</h2>
 <ul>
 <li>it's just like the skip-gram model</li>
 <li>but we just changed the score function</li>
 <li>so that we increased the vocab size by adding N-grams of all words we have</li>
 <li>then we use them to capture more meaning from the words</li>
 <li>if we encounter new word, then we add it's N-gram and thats would be the word vector 
-# Decision Trees</li>
+## Decision Trees</li>
 <li>they are greedy algorithm</li>
 <li>they can stuck in local minimum </li>
 <li>if the we have some continuous features, we can use it multiple times, every time with different range 
@@ -596,14 +602,53 @@ DDP registers autograd hooks during construction, one hook per parameter. These 
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Why-good-deep-in-Deep-Learning">
-<a class="anchor" href="#Why-good-deep-in-Deep-Learning" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why good deep in Deep Learning<a class="anchor-link" href="#Why-good-deep-in-Deep-Learning"> </a>
-</h3>
+<h2 id="Why-going-deep-in-Deep-Learning">
+<a class="anchor" href="#Why-going-deep-in-Deep-Learning" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why going deep in Deep Learning<a class="anchor-link" href="#Why-going-deep-in-Deep-Learning"> </a>
+</h2>
 <ul>
 <li>one motivation, is that going deep can reduce the size of our units exponentially</li>
 <li>in our underlying function, there could be some symmetry, that we can fold the function across its axis</li>
 <li>for statistical reasons, we would want to infer out initial beliefs, about our function, that is involve the composition of several simpler functions</li>
-<li>Empirical experiments show that deeper networks generalize better </li>
+<li>Empirical experiment<a href="https://www.youtube.com/watch?v%3DKbBMaMVk0eE"></a>s show that deeper networks generalize better </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Few-shot-Learning">
+<a class="anchor" href="#Few-shot-Learning" aria-hidden="true"><span class="octicon octicon-link"></span></a>Few-shot Learning<a class="anchor-link" href="#Few-shot-Learning"> </a>
+</h2>
+<ul>
+<li>we want to classify examples, that we only have few examples for, maybe even 0</li>
+<li>the idea is instead of having a classifier as the last layer(softmax layer), we can use a siamese network, just to tell us is the two examples are similar</li>
+<li>so we just learn a similarity function </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="GLIDE:">
+<a class="anchor" href="#GLIDE:" aria-hidden="true"><span class="octicon octicon-link"></span></a>GLIDE:<a class="anchor-link" href="#GLIDE:"> </a>
+</h2>
+<ul>
+<li>Generates realistic images from text</li>
+<li>GLIDE is the next version of DALLE, with respect to photo realism and caption similarity </li>
+<li>this is fine-tuned model, not zero-shot like DALLE </li>
+<li>It can generate or edit images </li>
+<li>so you can generate an image using zero-shot, then you can edit the image by putting masks on the image and tell the model what to draw in the masked area </li>
+</ul>
+<h3 id="Diffusion-Models">
+<a class="anchor" href="#Diffusion-Models" aria-hidden="true"><span class="octicon octicon-link"></span></a>Diffusion Models<a class="anchor-link" href="#Diffusion-Models"> </a>
+</h3>
+<ul>
+<li>we start with the original image, then we keep add noise to it till it become so noisy</li>
+<li>then we try to reverse the operation and get it back to the input image  </li>
 </ul>
 
 </div>
